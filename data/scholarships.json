@@ -1,0 +1,112 @@
+
+[
+  {
+    "id": 1,
+    "name": "Türkiye Scholarships",
+    "country": "Turkey",
+    "level": "Undergraduate",
+    "field": "All Fields",
+    "eligibility": "International students with strong academic records who meet the age and academic requirements.",
+    "deadline": "2026-02-20"
+  },
+  {
+    "id": 2,
+    "name": "Chevening Scholarship",
+    "country": "United Kingdom",
+    "level": "Master's",
+    "field": "All Fields",
+    "eligibility": "Applicants meeting the academic, work experience and citizenship requirements.",
+    "deadline": "2026-10-07"
+  },
+  {
+    "id": 3,
+    "name": "Fulbright Scholarship",
+    "country": "United States",
+    "level": "Master's",
+    "field": "All Fields",
+    "eligibility": "Pakistani students meeting the academic and program-specific eligibility requirements.",
+    "deadline": "2026-04-01"
+  },
+  {
+    "id": 4,
+    "name": "MEXT Scholarship",
+    "country": "Japan",
+    "level": "Undergraduate",
+    "field": "Engineering",
+    "eligibility": "International students meeting the Japanese government scholarship requirements.",
+    "deadline": "2026-05-15"
+  },
+  {
+    "id": 5,
+    "name": "DAAD Scholarship",
+    "country": "Germany",
+    "level": "Master's",
+    "field": "Engineering",
+    "eligibility": "Graduates meeting the academic and individual program requirements.",
+    "deadline": "2026-12-15"
+  },
+  {
+    "id": 6,
+    "name": "Erasmus Mundus Scholarship",
+    "country": "Europe",
+    "level": "Master's",
+    "field": "Computer Science",
+    "eligibility": "Students holding a relevant bachelor's degree and meeting program requirements.",
+    "deadline": "2027-01-15"
+  },
+  {
+    "id": 7,
+    "name": "Commonwealth Scholarship",
+    "country": "United Kingdom",
+    "level": "PhD",
+    "field": "Research",
+    "eligibility": "Applicants meeting Commonwealth country and academic requirements.",
+    "deadline": "2026-12-02"
+  },
+  {
+    "id": 8,
+    "name": "Australia Awards",
+    "country": "Australia",
+    "level": "Master's",
+    "field": "All Fields",
+    "eligibility": "Students from participating countries who meet the program requirements.",
+    "deadline": "2026-04-30"
+  },
+  {
+    "id": 9,
+    "name": "Chinese Government Scholarship",
+    "country": "China",
+    "level": "Undergraduate",
+    "field": "Computer Science",
+    "eligibility": "International students meeting the university and scholarship requirements.",
+    "deadline": "2027-03-31"
+  },
+  {
+    "id": 10,
+    "name": "Stipendium Hungaricum",
+    "country": "Hungary",
+    "level": "Undergraduate",
+    "field": "Engineering",
+    "eligibility": "Eligible international applicants nominated under the relevant country arrangements.",
+    "deadline": "2027-01-15"
+  },
+  {
+    "id": 11,
+    "name": "Gates Cambridge Scholarship",
+    "country": "United Kingdom",
+    "level": "PhD",
+    "field": "Research",
+    "eligibility": "Applicants demonstrating strong academic ability and meeting Cambridge admission requirements.",
+    "deadline": "2026-12-03"
+  },
+  {
+    "id": 12,
+    "name": "Knight-Hennessy Scholars",
+    "country": "United States",
+    "level": "PhD",
+    "field": "All Fields",
+    "eligibility": "Applicants meeting Stanford graduate admission and scholarship requirements.",
+    "deadline": "2026-10-08"
+  }
+]
+
