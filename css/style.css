@@ -25,7 +25,7 @@ body {
   padding: 0 20px;
 }
 
-/* Header matching Ali's structure */
+/* Header */
 .header {
   background-color: #ffffff;
   border-bottom: 1px solid #e2e8f0;
@@ -37,14 +37,18 @@ body {
   top: 0;
 }
 
+.logo,
 .logo h1 {
   font-size: 24px;
   font-weight: bold;
   color: #2563eb;
 }
-.logo h1 span{
-  color:  #eab308;
+
+.logo span,
+.logo h1 span {
+  color: #eab308;
 }
+
 .navbar {
   display: flex;
   gap: 20px;
@@ -61,7 +65,7 @@ body {
   color: #2563eb;
 }
 
-/* Hero matching Ali's structure */
+/* Hero */
 .hero {
   background-color: #2563eb;
   color: #ffffff;
@@ -135,7 +139,7 @@ body {
   background-color: #1d4ed8;
 }
 
-/* Footer matching Ali's structure */
+/* Footer */
 .footer {
   background-color: #ffffff;
   border-top: 1px solid #e2e8f0;
@@ -151,7 +155,8 @@ body {
 }
 
 /* ===== Scholarships page ===== */
-.scholarship-section {
+.scholarship-section,
+.scholarships-page {
   max-width: 1200px;
   margin: 30px auto;
   padding: 0 20px;
@@ -213,11 +218,12 @@ body {
   color: #475569;
 }
 
-.scholarship-cards {
+.scholarship-cards,
+#scholarship-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  margin-bottom: 30px;
+  margin: 20px 0 30px 0;
 }
 
 #empty-state {
