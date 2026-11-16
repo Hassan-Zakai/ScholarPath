@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admission Guide | ScholarPath</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/main.js" defer></script>
+    <script src="js/admission.js" defer></script>
+</head>
+
+<body>
+
+<header>
+
+    <h2>ScholarPath</h2>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="scholarships.html">Scholarships</a>
+        <a href="universities.html">Universities</a>
+        <a href="admission.html">Admission</a>
+    </nav>
+
+</header>
+
+<section class="container">
+
+    <h1>Admission Requirements Checklist</h1>
+
+    <p>
+        Complete these common tasks before applying
+        to a university.
+    </p>
+
+    <h3 id="progress-label">
+        0 of 8 completed
+    </h3>
+
+    <div class="progress-track">
+        <div id="progress-fill"></div>
+    </div>
+
+    <div id="admission-checklist"></div>
+
+    <button id="reset-checklist">
+        Reset Checklist
+    </button>
+
+</section>
+
+<footer>
+    <p>© 2026 ScholarPath</p>
+</footer>
+
+</body>
+</html>
