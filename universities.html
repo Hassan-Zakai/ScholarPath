@@ -8,28 +8,35 @@
 </head>
 <body>
 
-<header>
-<h1>University Profiles</h1>
-</header>
+<header class="header">
+    <div class="logo">
+        Scholar<span>Path</span>
+        </div>
 
-<div class="controls">
-<input type="text" id="search" placeholder="Search by name, location, program...">
-<select id="typeFilter"><option value="">All Types</option><option>Public</option><option>Private</option></select>
-<select id="programFilter"><option value="">All Programs</option><option>BS CS</option><option>BBA</option><option>Engineering</option></select>
-</div>
-
-<div class="grid" id="uniGrid"></div>
-
-<!-- Navigation -->
+        <!-- Navigation -->
         <nav class="navbar">
             <a href="index.html">Home</a>
             <a href="scholarships.html">Scholarships</a>
             <a href="universities.html">Universities</a>
             <a href="admissions.html">Admissions</a>
         </nav>
-
-   
-    <footer class="footer">
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+        
+    </header>
+    
+    <main class="container">
+        <h1>University Profiles</h1>
+        <div class="controls">
+            <input type="text" id="search" placeholder="Search by name, location, program...">
+            <select id="typeFilter"><option value="">All Types</option><option>Public</option><option>Private</option></select>
+            <select id="programFilter"><option value="">All Programs</option><option>BS CS</option><option>BBA</option><option>Engineering</option></select>
+        </div>
+        
+        <div class="grid" id="uniGrid"></div>
+        
+    </main>
+        
+        <footer class="footer">
 
         <h2>ScholarPath</h2>
 
@@ -44,6 +51,6 @@
 
     <!-- JavaScript File -->
     <script src="js/main.js"></script>
-
+    <script src="js/universities.js"></script>
 </body>
 </html>

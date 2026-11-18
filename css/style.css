@@ -290,7 +290,7 @@ body {
   }
 
   .menu-toggle{
-    display: lock;
+    display: block;
   }
 
   .navbar{
