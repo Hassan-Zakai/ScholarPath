@@ -21,3 +21,10 @@ function togglefavorites(type,id){
     localStorage.setItem(storagekey,JSON.stringify(favorites));
     return favorites;
 }
+const menuToggle = document.getElementById('menu-toggle');
+const navbar = document.querySelector('.navbar');
+
+if(menuToggle && navbar){
+    menuToggle.addEventListener('click',function(){ navbar.classList.toggle('open')});
+    
+}
