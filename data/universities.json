@@ -1,0 +1,12 @@
+[
+  {"id": 1, "name": "University of Karachi", "city": "Karachi", "type": "Public", "programs": ["BS CS", "BBA"], "fee": "40,000", "details": "Big public university"},
+  {"id": 2, "name": "NED University", "city": "Karachi", "type": "Public", "programs": ["BS CS", "BE Mechanical"], "fee": "55,000", "details": "Top engineering"},
+  {"id": 3, "name": "IBA Karachi", "city": "Karachi", "type": "Public", "programs": ["BBA", "BS CS"], "fee": "250,000", "details": "Business school"},
+  {"id": 4, "name": "Aga Khan University", "city": "Karachi", "type": "Private", "programs": ["MBBS", "BBA"], "fee": "400,000", "details": "Medical university"},
+  {"id": 5, "name": "LUMS", "city": "Lahore", "type": "Private", "programs": ["BBA", "BS CS"], "fee": "500,000", "details": "Best private"},
+  {"id": 6, "name": "Punjab University", "city": "Lahore", "type": "Public", "programs": ["BS CS", "BBA"], "fee": "35,000", "details": "Oldest university"},
+  {"id": 7, "name": "NUST", "city": "Islamabad", "type": "Public", "programs": ["BS CS", "BBA"], "fee": "120,000", "details": "Top ranked"},
+  {"id": 8, "name": "FAST NUCES", "city": "Karachi", "type": "Private", "programs": ["BS CS", "BS AI"], "fee": "150,000", "details": "Best for CS"},
+  {"id": 9, "name": "Peshawar University", "city": "Peshawar", "type": "Public", "programs": ["BS CS", "BBA"], "fee": "30,000", "details": "KPK main uni"},
+  {"id": 10, "name": "COMSATS", "city": "Islamabad", "type": "Public", "programs": ["BS CS", "BS AI"], "fee": "90,000", "details": "IT university"}
+]
