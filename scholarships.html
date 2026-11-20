@@ -16,6 +16,8 @@
             Scholar<span>Path</span>
         </div>
 
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+
         <!-- Navigation -->
         <nav class="navbar">
             <a href="index.html">Home</a>
@@ -23,24 +25,35 @@
             <a href="universities.html">Universities</a>
             <a href="admissions.html">Admissions</a>
         </nav>
-        <button class="menu-toggle" id="menu-toggle">☰</button>
-
     </header>
 
-    <!-- Main part for scholarships -->
+    <!-- Main Content -->
     <main class="scholarships-page">
 
         <h1>Explore Scholarships</h1>
-
         <p>
             Discover scholarship opportunities around the world
             and find financial support for your education.
         </p>
 
-        <!-- Scholarship data will be displayed here in later tasks -->
-        <section id="scholarship-container">
-            <p>Scholarship opportunities will appear here.</p>
-        </section>
+        <!-- Filters required by scholarships.js -->
+        <div class="filters">
+            <select id="country-filter">
+                <option value="">All Countries</option>
+            </select>
+
+            <select id="field-filter">
+                <option value="">All Fields</option>
+            </select>
+        </div>
+
+        <!-- Results Count required by scholarships.js -->
+        <div class="results">
+            <p>Total Scholarships: <strong id="result-count">0</strong></p>
+        </div>
+
+        <!-- Scholarship Cards Container required by scholarships.js -->
+        <section class="scholarship-cards" id="scholarship-cards"></section>
 
     </main>
 

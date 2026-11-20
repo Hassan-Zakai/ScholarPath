@@ -114,7 +114,8 @@ body {
   margin: 30px 0;
 }
 
-.card {
+.card,
+.scholarship-card {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 8px;

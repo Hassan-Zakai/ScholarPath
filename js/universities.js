@@ -1,163 +1,84 @@
 let universities = [];
 
-const universityList =
-    document.getElementById("university-list");
+const uniGrid = document.getElementById("uniGrid");
+const searchInput = document.getElementById("search");
+const typeFilter = document.getElementById("typeFilter");
+const programFilter = document.getElementById("programFilter");
 
-
-// Load university data
+// Load university data from JSON
 async function loadUniversities() {
-
     try {
-
-        const response =
-            await fetch("data/universities.json");
-
+        const response = await fetch("data/universities.json");
+        if (!response.ok) {
+            throw new Error("Failed to fetch universities");
+        }
         universities = await response.json();
-
-        loadCountries();
-
-        displayUniversities();
-
+        displayUniversities(universities);
+    } catch (error) {
+        console.error("Error loading universities:", error);
+        uniGrid.innerHTML = "<p>Unable to load university data.</p>";
     }
-
-    catch (error) {
-
-        universityList.innerHTML =
-            "<p>Unable to load university data.</p>";
-
-    }
-
 }
 
+// Render university cards
+function displayUniversities(list) {
+    if (list.length === 0) {
+        uniGrid.innerHTML = "<p>No universities found.</p>";
+        return;
+    }
 
-// Load countries
-function loadCountries() {
+    uniGrid.innerHTML = list.map(u => {
+        const saved = isFavorite("university", u.id);
+        return `
+            <div class="card">
+                <h3>${u.name}</h3>
+                <p><strong>City:</strong> ${u.city}</p>
+                <p><strong>Type:</strong> ${u.type}</p>
+                <p><strong>Programs:</strong> ${u.programs.join(", ")}</p>
+                <p><strong>Fee:</strong> ${u.fee}</p>
+                <p>${u.details}</p>
+                <button class="btn fav-btn" data-id="${u.id}">
+                    ${saved ? "★ Saved" : "☆ Favorite"}
+                </button>
+            </div>
+        `;
+    }).join("");
 
-    const countries = [
-        ...new Set(universities.map(u => u.country))
-    ];
-
-    countries.forEach(country => {
-
-        document.getElementById("university-country")
-            .add(new Option(country, country));
-
+    // Attach click events to favorite buttons
+    document.querySelectorAll(".fav-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+            const id = Number(this.getAttribute("data-id"));
+            toggleFavorite("university", id);
+            applyFilters();
+        });
     });
-
 }
 
-
-// Display universities
-function displayUniversities() {
-
-    const search = document
-        .getElementById("university-search")
-        .value.toLowerCase();
-
-    const country = document
-        .getElementById("university-country")
-        .value;
-
+// Apply search, type, and program filters together
+function applyFilters() {
+    const searchText = searchInput.value.toLowerCase();
+    const selectedType = typeFilter.value;
+    const selectedProgram = programFilter.value;
 
     const filtered = universities.filter(u => {
+        const matchesSearch =
+            u.name.toLowerCase().includes(searchText) ||
+            u.city.toLowerCase().includes(searchText) ||
+            u.programs.join(" ").toLowerCase().includes(searchText);
 
-        return (
+        const matchesType = !selectedType || u.type === selectedType;
+        const matchesProgram = !selectedProgram || u.programs.includes(selectedProgram);
 
-            (
-                u.name.toLowerCase().includes(search) ||
-
-                u.location.toLowerCase().includes(search) ||
-
-                u.programs.join(" ")
-                    .toLowerCase()
-                    .includes(search)
-            )
-
-            &&
-
-            (!country || u.country === country)
-
-        );
-
+        return matchesSearch && matchesType && matchesProgram;
     });
 
-
-    document.getElementById(
-        "university-results-count"
-    ).textContent =
-        `Showing ${filtered.length} universities`;
-
-
-    if (filtered.length === 0) {
-
-        universityList.innerHTML =
-            "<p>No universities found.</p>";
-
-        return;
-
-    }
-
-
-    universityList.innerHTML = filtered.map(u => `
-
-        <div class="card">
-
-            <h3>${u.name}</h3>
-
-            <p>
-                <strong>Location:</strong>
-                ${u.location}
-            </p>
-
-            <p>
-                <strong>Country:</strong>
-                ${u.country}
-            </p>
-
-            <p>
-                <strong>Programs:</strong>
-                ${u.programs.join(", ")}
-            </p>
-
-            <p>${u.details}</p>
-
-            ${favoriteButton(
-                "university",
-                u.id,
-                u.name
-            )}
-
-        </div>
-
-    `).join("");
-
+    displayUniversities(filtered);
 }
 
+// Event listeners
+searchInput.addEventListener("input", applyFilters);
+typeFilter.addEventListener("change", applyFilters);
+programFilter.addEventListener("change", applyFilters);
 
-// Search universities
-document.getElementById(
-    "university-search"
-).addEventListener(
-    "input",
-    displayUniversities
-);
-
-
-// Filter by country
-document.getElementById(
-    "university-country"
-).addEventListener(
-    "change",
-    displayUniversities
-);
-
-
-// Update favorites
-document.addEventListener(
-    "favoritesChanged",
-    displayUniversities
-);
-
-
-// Start program
+// Start
 loadUniversities();
