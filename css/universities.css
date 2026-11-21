@@ -1,0 +1,228 @@
+/* =====================================================================
+   ScholarPath - Universities page styles  (owner: Shahzaib)
+   Save as css/universities.css and link it AFTER style.css in universities.html:
+       <link rel="stylesheet" href="css/style.css">
+       <link rel="stylesheet" href="css/universities.css">
+   Do NOT edit css/style.css (that file is Hassan's).
+
+   Card markup to use inside js/universities.js (class names matter):
+       <div class="card uni-card">
+         <h3>NAME</h3>
+         <p class="uni-location">LOCATION</p>
+         <div class="chips"><span class="chip">PROGRAM</span> ...</div>
+         <p>DETAILS</p>
+         <div class="card-actions"> favorite button here </div>
+       </div>
+   ===================================================================== */
+
+h1 {
+  font-size: 34px;
+  color: #0f172a;
+  margin: 35px 0 6px;
+}
+
+/* ---- search + filter bar ---- */
+.controls {
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+  gap: 14px;
+}
+
+.controls input,
+.controls select {
+  padding: 12px 14px;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.controls input {
+  flex: 1 1 260px;                              /* search box takes the free space */
+}
+
+.controls input:focus,
+.controls select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.controls select {
+  cursor: pointer;
+}
+
+/* ---- university cards ---- */
+.uni-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.uni-card h3 {
+  font-size: 19px;
+  line-height: 1.3;
+  color: #0f172a;
+}
+
+.uni-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.uni-location::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  background: #2563eb;
+  border-radius: 50% 50% 50% 0;                 /* tiny map-pin shape, no image needed */
+  transform: rotate(-45deg) scale(0.85);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: bold;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.card-actions {
+  margin-top: auto;                             /* sticks to the bottom of every card */
+  padding-top: 14px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* "View requirements" link button */
+.btn-ghost {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 2px solid #2563eb;
+  border-radius: 8px;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.15s, transform 0.15s;
+}
+
+.btn-ghost:hover {
+  background-color: #eff6ff;
+  transform: translateY(-1px);
+}
+
+/* heart / favorite button (same look as the Scholarships page) */
+.fav-btn {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #e2e8f0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #94a3b8;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.fav-btn:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border-color: #fecaca;
+  transform: scale(1.08);
+}
+
+.fav-btn.saved {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+/* "Public / Private" chip stands out from the program chips */
+.chip-type {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+/* ---- notes, counter, saved-only checkbox ---- */
+.page-note {
+  color: #64748b;
+  max-width: 680px;
+  margin-bottom: 4px;
+}
+
+.result-note {
+  color: #64748b;
+  margin: -6px 0 16px;
+}
+
+.result-note strong {
+  color: #0f172a;
+  font-size: 17px;
+}
+
+.check-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.controls .btn {
+  padding: 11px 20px;
+}
+
+.empty-box {
+  text-align: center;
+  padding: 50px 20px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.empty-box h3 { color: #0f172a; margin-bottom: 6px; }
+.empty-box p { color: #64748b; margin-bottom: 16px; }
+
+/* ---- empty message ---- */
+#uniGrid > p {
+  grid-column: 1 / -1;
+  padding: 40px 20px;
+  text-align: center;
+  color: #64748b;
+  border: 2px dashed #cbd5e1;
+  border-radius: 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+/* Phones: one card per row (style.css has a typo'd selector for #uniGrid on small screens) */
+@media (max-width: 480px) {
+  #uniGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .controls input,
+  .controls select {
+    flex: 1 1 100%;
+  }
+}
