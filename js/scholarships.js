@@ -3,6 +3,7 @@
    Day 2: load data + render cards + dropdowns
    Day 3: search, filters, reset, empty state, Show More
    Day 4: days-left badges + favorite (heart) button
+   Final: "Apply Now" button linking to the official website
 ===================================================== */
 
 // ---------- Global variables ----------
@@ -91,6 +92,14 @@ async function loadScholarships() {
         // Fill the country and field dropdowns, then show everything
         populateCountryDropdown();
         populateFieldDropdown();
+
+        // Links like scholarships.html?q=Chevening pre-fill the search box
+        const q = new URLSearchParams(window.location.search).get("q");
+        if (q) {
+            document.getElementById("search-input").value = q;
+            updateClearButton();
+        }
+
         applyFilters();
 
     }
@@ -116,25 +125,44 @@ async function loadScholarships() {
 /* =====================================================
    2. Create ONE scholarship card (returns the card element)
 ===================================================== */
+
+// Small inline icons (fixed strings written by us, not user data)
+const ICON_PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>';
+const ICON_CALENDAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>';
+
+// Small helper: create an element with a class and text
+function makeEl(tag, className, text) {
+    const el = document.createElement(tag);
+    if (className) el.className = className;
+    if (text !== undefined) el.textContent = text;
+    return el;
+}
+
 function createCard(scholarship) {
 
     const days = daysLeft(scholarship.deadline);
     const badgeInfo = getDeadlineBadge(days);
 
-    const card = document.createElement("div");
-    card.classList.add("scholarship-card");
+    const card = makeEl("div", "scholarship-card");
     if (days < 0) card.classList.add("expired");
 
-    // --- Top row: name + heart button ---
-    const top = document.createElement("div");
-    top.classList.add("card-top");
+    // --- Picture area: image + days-left badge + heart on top of it ---
+    const media = makeEl("div", "card-media");
 
-    const name = document.createElement("h3");
-    name.textContent = scholarship.name;
+    if (scholarship.image) {
+        const img = document.createElement("img");
+        img.src = scholarship.image;
+        img.alt = "Illustration for " + scholarship.name;
+        img.loading = "lazy";
+        // If the picture file is missing, just remove it (the blue background stays)
+        img.addEventListener("error", function () { img.remove(); });
+        media.appendChild(img);
+    }
 
-    const heart = document.createElement("button");
+    media.appendChild(makeEl("span", "badge " + badgeInfo.cls, badgeInfo.text));
+
+    const heart = makeEl("button", "fav-btn");
     heart.type = "button";
-    heart.classList.add("fav-btn");
     heart.setAttribute("aria-label", "Save " + scholarship.name + " to favorites");
 
     // Check saved state EVERY time a card is built, so hearts stay correct
@@ -145,36 +173,54 @@ function createCard(scholarship) {
         safeToggleFavorite("scholarship", scholarship.id);
         setHeart(heart, safeIsFavorite("scholarship", scholarship.id));
     });
+    media.appendChild(heart);
 
-    top.appendChild(name);
-    top.appendChild(heart);
+    // --- Text area ---
+    const body = makeEl("div", "card-body");
 
-    // --- Days left badge ---
-    const badge = document.createElement("span");
-    badge.classList.add("badge", badgeInfo.cls);
-    badge.textContent = badgeInfo.text;
+    const title = makeEl("div", "card-title");
+    title.appendChild(makeEl("h3", "", scholarship.name));
+    const country = makeEl("p", "card-country");
+    country.innerHTML = ICON_PIN;
+    country.appendChild(document.createTextNode(scholarship.country));
+    title.appendChild(country);
 
-    // --- Detail lines ---
-    card.appendChild(top);
-    card.appendChild(badge);
-    card.appendChild(makeLine("Country: ", scholarship.country));
-    card.appendChild(makeLine("Level: ", scholarship.level));
-    card.appendChild(makeLine("Field: ", scholarship.field));
-    card.appendChild(makeLine("Eligibility: ", scholarship.eligibility));
-    card.appendChild(makeLine("Deadline: ", formatDate(scholarship.deadline)));
+    const chips = makeEl("div", "chips");
+    chips.appendChild(makeEl("span", "chip chip-level", scholarship.level));
+    chips.appendChild(makeEl("span", "chip chip-field", scholarship.field));
+
+    const eligibility = makeEl("div", "eligibility");
+    eligibility.appendChild(makeEl("span", "label", "WHO CAN APPLY"));
+    eligibility.appendChild(makeEl("p", "", scholarship.eligibility));
+
+    const footer = makeEl("div", "card-footer");
+    const deadline = makeEl("div", "deadline");
+    deadline.innerHTML = ICON_CALENDAR;
+    const deadlineText = makeEl("div");
+    deadlineText.appendChild(makeEl("small", "", "Deadline"));
+    deadlineText.appendChild(makeEl("strong", "", formatDate(scholarship.deadline)));
+    deadline.appendChild(deadlineText);
+    footer.appendChild(deadline);
+
+    // Apply Now: opens the official scholarship website in a new tab
+    if (scholarship.applyLink) {
+        const apply = makeEl("a", "apply-btn", "Apply Now");
+        apply.href = scholarship.applyLink;
+        apply.target = "_blank";
+        apply.rel = "noopener noreferrer";
+        apply.setAttribute("aria-label", "Apply now for " + scholarship.name + " (opens the official website in a new tab)");
+        footer.appendChild(apply);
+    }
+
+    body.appendChild(title);
+    body.appendChild(chips);
+    body.appendChild(eligibility);
+    body.appendChild(footer);
+
+    card.appendChild(media);
+    card.appendChild(body);
 
     return card;
-}
-
-// <p><strong>label</strong> value</p>  (textContent is used, so no HTML injection)
-function makeLine(label, value) {
-    const p = document.createElement("p");
-    const strong = document.createElement("span");
-    strong.classList.add("label");
-    strong.textContent = label;
-    p.appendChild(strong);
-    p.appendChild(document.createTextNode(value));
-    return p;
 }
 
 // Change the heart between empty (♡) and filled (♥)
@@ -291,6 +337,12 @@ function applyFilters() {
 
 }
 
+// Show the little x in the search bar only when there is text
+function updateClearButton() {
+    const hasText = document.getElementById("search-input").value !== "";
+    document.getElementById("search-clear").hidden = !hasText;
+}
+
 function resetFilters() {
 
     document.getElementById("search-input").value = "";
@@ -298,6 +350,7 @@ function resetFilters() {
     document.getElementById("country-filter").value = "";
     document.getElementById("field-filter").value = "";
 
+    updateClearButton();
     applyFilters();
 
 }
@@ -314,7 +367,18 @@ function showMore() {
 document.addEventListener("DOMContentLoaded", function () {
 
     // Search box: run on every key press
-    document.getElementById("search-input").addEventListener("input", applyFilters);
+    document.getElementById("search-input").addEventListener("input", function () {
+        updateClearButton();
+        applyFilters();
+    });
+
+    // The x button inside the search bar
+    document.getElementById("search-clear").addEventListener("click", function () {
+        document.getElementById("search-input").value = "";
+        updateClearButton();
+        applyFilters();
+        document.getElementById("search-input").focus();
+    });
 
     // Dropdowns: run when the selection changes
     ["level-filter", "country-filter", "field-filter"].forEach(function (id) {
