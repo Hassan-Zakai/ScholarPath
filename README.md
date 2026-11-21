@@ -2,21 +2,25 @@
 
 A website to help students find scholarships and universities, and check admission requirements.
 
-Made by:
-- Muhammad Hassan Zakai (26K-0966)
-- Ali Muhammad (26K-0985)
-- Shahzaib Ahmed (26K-1070)
+**Course:** Information and Communication Technology
+**University:** National University of Computer & Emerging Sciences (FAST-NUCES), Karachi Campus
 
-Course: Information and Communication Technology, FAST-NUCES Karachi
+## Team Members
+
+| Name | Roll No. | Responsibility |
+|---|---|---|
+| Muhammad Hassan Zakai | 26K-0966 | Home page, shared CSS, favorites, integration |
+| Ali Muhammad | 26K-0985 | Scholarships page, search and filters, deadlines |
+| Shahzaib Ahmed | 26K-1070 | Universities page, admission checklist |
 
 ## What it has
 
 - Home page with links to all pages and a My Favorites section
-- Scholarships page with search, filters and deadlines
+- Scholarships page with search, filters, deadline badges and official website links
 - Universities page with search and filters
-- Admission checklist page
+- Admission page with a checklist for Public, Private and Abroad applicants
 - Favorites are saved in the browser (localStorage)
-- Works on mobile and desktop
+- Dark yellow neon theme, works on mobile and desktop
 
 ## Technologies
 
@@ -28,6 +32,7 @@ HTML, CSS, JavaScript, JSON
 - `css/style.css`: styling for all pages
 - `js/`: JavaScript for each page
 - `data/`: scholarship and university data in JSON files
+- `images/`: photos used on the home page
 
 ## How to run
 
@@ -41,4 +46,4 @@ Then open the folder in VS Code and run `index.html` with the Live Server extens
 
 ## Note
 
-All data is sample data for a student project.
+All data is sample data for a student project. Please verify details on official websites before applying.
