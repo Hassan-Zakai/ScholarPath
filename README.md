@@ -1,70 +1,44 @@
-# ScholarPath: Scholarship & University Finder
+# ScholarPath
 
-A simple website that helps students find scholarships, explore universities, and track admission requirements.
+A website to help students find scholarships and universities, and check admission requirements.
 
-**Course:** Information and Communication Technology
-**University:** National University of Computer & Emerging Sciences (FAST-NUCES), Karachi Campus
+Made by:
+- Muhammad Hassan Zakai (26K-0966)
+- Ali Muhammad (26K-0985)
+- Shahzaib Ahmed (26K-1070)
 
-## Team Members
+Course: Information and Communication Technology, FAST-NUCES Karachi
 
-| Name | Roll No. | Responsibility |
-|---|---|---|
-| Muhammad Hassan Zakai | 26K-0966 | Home page, shared CSS, favorites (main.js), integration |
-| Ali Muhammad | 26K-0985 | Scholarships page, search and filters, deadlines |
-| Shahzaib Ahmed | 26K-1070 | Universities page, admission checklist |
+## What it has
 
-## Features
-
-- **Home page** with project introduction, links to all sections, and a "My Favorites" section
-- **Scholarships page** with search, filters (study level, country, field), deadline display and favorite button
-- **Universities page** with search, filters (type, program) and favorite button
-- **Admission page** with a checklist that students can tick off (progress is saved)
-- **Favorites** saved in the browser using localStorage (key: `scholarpathFavorites`)
-- **Responsive design** for desktop, tablet and mobile
+- Home page with links to all pages and a My Favorites section
+- Scholarships page with search, filters and deadlines
+- Universities page with search and filters
+- Admission checklist page
+- Favorites are saved in the browser (localStorage)
+- Works on mobile and desktop
 
 ## Technologies
 
-HTML5, CSS3, JavaScript, JSON, localStorage
+HTML, CSS, JavaScript, JSON
 
-## Folder Structure
+## Files
+
+- `index.html`, `scholarships.html`, `universities.html`, `admission.html`: the 4 pages
+- `css/style.css`: styling for all pages
+- `js/`: JavaScript for each page
+- `data/`: scholarship and university data in JSON files
+
+## How to run
+
+Clone the repository:
 
 ```
-ScholarPath/
-├── index.html
-├── scholarships.html
-├── universities.html
-├── admission.html
-├── css/
-│   └── style.css
-├── js/
-│   ├── main.js
-│   ├── scholarships.js
-│   ├── universities.js
-│   └── admission.js
-├── data/
-│   ├── scholarships.json
-│   └── universities.json
-└── README.md
+git clone https://github.com/Hassan-Zakai/ScholarPath
 ```
 
-## How to Run
-
-1. Clone the repository:
-
-   ```
-   git clone https://github.com/Hassan-Zakai/ScholarPath
-   ```
-
-2. Open the `ScholarPath` folder in VS Code.
-3. Install the **Live Server** extension.
-4. Right-click `index.html` and choose **Open with Live Server**.
-
-> Do not open the HTML files by double-clicking. The site loads JSON files with `fetch`, which needs a local server (Live Server).
-
-## How Favorites Work
-
-Each favorite is stored as `{ type: "scholarship" | "university", id: number }` in localStorage. The home page reads these entries, finds the matching item in the JSON files and shows it as a card.
+Then open the folder in VS Code and run `index.html` with the Live Server extension. Don't double-click the HTML files, because the JSON data won't load without a server.
 
 ## Note
 
-The scholarship, university and admission data is **sample data** for a student project. Please verify details on official websites before applying.
+All data is sample data for a student project.
