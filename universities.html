@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="stylesheet" href="css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scholar Path | Universities</title>
+    <title>Universities | ScholarPath</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/universities.css">
 </head>
-
 <body>
 
     <header class="header">
@@ -15,36 +14,39 @@
             Scholar<span>Path</span>
         </div>
 
-        <button class="menu-toggle" id="menu-toggle">☰</button>
-
         <!-- Navigation -->
         <nav class="navbar">
             <a href="index.html">Home</a>
             <a href="scholarships.html">Scholarships</a>
             <a href="universities.html">Universities</a>
-            <a href="admission.html">Admissions</a>
+            <a href="admissions.html">Admissions</a>
         </nav>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
 
     </header>
 
     <main class="container">
         <h1>University Profiles</h1>
+        <p class="page-note">Compare where you could study. Sample data for a class project: confirm programs and requirements on each university's official website.</p>
+
         <div class="controls">
-            <input type="text" id="search" placeholder="Search by name, location, program...">
-            <select id="typeFilter">
-                <option value="">All Types</option>
-                <option>Public</option>
-                <option>Private</option>
-            </select>
-            <select id="programFilter">
-                <option value="">All Programs</option>
-                <option>BS CS</option>
-                <option>BBA</option>
-                <option>Engineering</option>
-            </select>
+            <input type="text" id="search" placeholder="Search by name, location, program..." aria-label="Search universities">
+            <select id="typeFilter" aria-label="Filter by type"><option value="">All Types</option><option>Public</option><option>Private</option></select>
+            <select id="programFilter" aria-label="Filter by program"><option value="">All Programs</option></select>
+            <label class="check-label"><input type="checkbox" id="savedOnly"> Saved only</label>
+            <button type="button" class="btn" id="uni-reset">Reset</button>
         </div>
 
-        <div class="grid" id="uniGrid"></div>
+        <p class="result-note" aria-live="polite"><strong id="uni-count">0</strong> universities found</p>
+
+        <div class="grid" id="uniGrid"><p>Loading universities...</p></div>
+
+        <!-- Shown only when nothing matches -->
+        <div id="uni-empty" class="empty-box" hidden>
+            <h3>No universities found</h3>
+            <p>Try a different search word or remove some filters.</p>
+            <button type="button" class="btn" id="uni-empty-reset">Reset Filters</button>
+        </div>
 
     </main>
 
@@ -61,9 +63,8 @@
     </footer>
 
 
-    <!-- JavaScript File -->
+    <!-- JavaScript (main.js must load first) -->
     <script src="js/main.js"></script>
     <script src="js/universities.js"></script>
 </body>
-
 </html>
