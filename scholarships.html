@@ -7,104 +7,385 @@
     <title>Scholarships | ScholarPath</title>
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Styles used only by the scholarship cards (kept here so style.css stays untouched) -->
+    <!-- Styles used only by this page (kept here so style.css stays untouched) -->
     <style>
-        .scholarship-card {
+        /* Keep the sticky header above everything while scrolling */
+        .header { z-index: 20; box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06); }
+
+        /* ===== Banner with the big search bar ===== */
+        .page-hero {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 55%, #3b82f6 100%);
+            color: #ffffff;
+            padding: 48px 20px 70px;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-hero h1 {
+            font-size: 38px;
+            line-height: 1.15;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .page-hero p {
+            color: #dbeafe;
+            max-width: 620px;
+            font-size: 17px;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 720px;
+            margin-top: 26px;
+        }
+
+        .search-box .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 22px;
+            height: 22px;
+            color: #64748b;
+            pointer-events: none;
+        }
+
+        .search-box #search-input {
+            width: 100%;
+            margin: 0;
+            padding: 18px 52px 18px 52px;
+            font-size: 17px;
+            color: #0f172a;
             background-color: #ffffff;
+            border: 3px solid transparent;
+            border-radius: 999px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .search-box #search-input::placeholder { color: #94a3b8; }
+
+        .search-box #search-input:focus {
+            outline: none;
+            border-color: #eab308;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25), 0 0 0 4px rgba(234, 179, 8, 0.3);
+        }
+
+        .search-box .search-clear {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            color: #334155;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .search-box .search-clear:hover { background-color: #cbd5e1; }
+        .search-box .search-clear[hidden] { display: none; }
+
+        /* ===== Filter bar (overlaps the banner a little) ===== */
+        .scholarships-page {
+            margin-top: 0;
+        }
+
+        .filters {
+            position: relative;
+            margin-top: -34px;
+            padding: 18px 20px;
             border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 14px;
+            gap: 14px;
+            align-items: flex-end;
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+        }
+
+        .filter-group {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 5px;
+            min-width: 170px;
+            flex: 1 1 170px;
+            max-width: 260px;
         }
 
-        /* Expired cards: greyed out with colours (not opacity, because opacity
-           makes the card float over the sticky header while scrolling) */
-        .scholarship-card.expired {
-            background-color: #f1f5f9;
-        }
-
-        .scholarship-card.expired h3,
-        .scholarship-card.expired p,
-        .scholarship-card.expired .label {
-            color: #64748b;
-        }
-
-        .scholarship-card .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .scholarship-card h3 {
-            color: #1e293b;
-            font-size: 18px;
-        }
-
-        .scholarship-card p {
-            color: #475569;
-            font-size: 15px;
-        }
-
-        .scholarship-card .label {
+        .filter-group label {
+            font-size: 13px;
             font-weight: bold;
-            color: #1e293b;
+            color: #475569;
         }
 
-        /* Heart / favorite button */
-        .fav-btn {
-            background: none;
-            border: none;
-            font-size: 26px;
-            line-height: 1;
-            color: #94a3b8;
+        .filters select {
+            width: 100%;
+            padding: 11px 12px;
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
             cursor: pointer;
-            padding: 0 2px;
         }
 
-        .fav-btn:hover {
-            color: #dc2626;
+        .filters select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
-        .fav-btn.saved {
-            color: #dc2626;
+        .filters button {
+            margin-left: auto;
+            padding: 11px 20px;
+            background-color: #ffffff;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+            border-radius: 8px;
         }
 
+        .filters button:hover { background-color: #eff6ff; }
+
+        .filters button:focus-visible,
+        .load-more-container button:focus-visible,
+        #empty-state button:focus-visible,
+        .search-clear:focus-visible,
         .fav-btn:focus-visible {
             outline: 3px solid #eab308;
             outline-offset: 2px;
         }
 
-        /* Days-left badges */
-        .badge {
-            display: inline-block;
-            align-self: flex-start;
-            padding: 4px 10px;
+        /* Result count */
+        .results { margin: 24px 0 6px; }
+        .results p { font-size: 15px; color: #64748b; }
+        .results #result-count { font-weight: bold; color: #0f172a; font-size: 17px; }
+
+        /* ===== Cards ===== */
+        .scholarship-card {
+            position: relative;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-top: 5px solid #22c55e;              /* green = plenty of time */
+            border-radius: 14px;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+            transition: box-shadow 0.15s, transform 0.15s;
+        }
+
+        .scholarship-card:hover {
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+            transform: translateY(-3px);
+        }
+
+        /* Top colour follows the deadline status */
+        .scholarship-card:has(.badge-soon)    { border-top-color: #f97316; }
+        .scholarship-card:has(.badge-urgent)  { border-top-color: #dc2626; }
+        .scholarship-card:has(.badge-expired) { border-top-color: #94a3b8; }
+
+
+
+        .card-title { min-width: 0; }
+
+        /* Picture on top of each card */
+        .card-media {
+            position: relative;
+            height: 170px;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            overflow: hidden;
+        }
+
+        .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .scholarship-card:hover .card-media img { transform: scale(1.05); }
+
+        .card-media .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+        }
+
+        .card-media .fav-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.25);
+        }
+
+        .card-media .fav-btn:hover,
+        .card-media .fav-btn.saved { background-color: #fee2e2; }
+
+        .card-body {
+            padding: 18px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
+        }
+
+        .scholarship-card h3 {
+            font-size: 18px;
+            line-height: 1.3;
+            color: #0f172a;
+            margin-bottom: 3px;
+        }
+
+        .card-country {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .card-country svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .chip {
+            padding: 4px 12px;
             border-radius: 999px;
             font-size: 13px;
             font-weight: bold;
         }
 
-        .badge-normal {
-            background-color: #dcfce7;
-            color: #166534;
+        .chip-level { background-color: #dbeafe; color: #1d4ed8; }
+        .chip-field { background-color: #f1f5f9; color: #334155; }
+
+        .eligibility .label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.4px;
+            color: #94a3b8;
+            margin-bottom: 3px;
         }
 
-        .badge-soon {
-            background-color: #ffedd5;
-            color: #9a3412;
-        }
-
-        .badge-urgent {
-            background-color: #fee2e2;
-            color: #b91c1c;
-        }
-
-        .badge-expired {
-            background-color: #e2e8f0;
+        .eligibility p {
+            font-size: 14.5px;
+            line-height: 1.55;
             color: #475569;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .deadline {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: #475569;
+        }
+
+        .deadline svg { width: 22px; height: 22px; flex-shrink: 0; color: #64748b; }
+        .deadline small { display: block; font-size: 12px; color: #94a3b8; line-height: 1.2; }
+        .deadline strong { font-size: 15px; color: #0f172a; line-height: 1.3; }
+
+        /* Apply Now button */
+        .apply-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2563eb;
+            color: #ffffff;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background-color 0.15s;
+        }
+
+        .apply-btn:hover { background-color: #1d4ed8; }
+
+        .apply-btn:focus-visible {
+            outline: 3px solid #eab308;
+            outline-offset: 2px;
+        }
+
+        .scholarship-card.expired .apply-btn { background-color: #64748b; }
+        .scholarship-card.expired .apply-btn:hover { background-color: #475569; }
+
+        /* Days-left badges */
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .badge-normal  { background-color: #dcfce7; color: #166534; }
+        .badge-soon    { background-color: #ffedd5; color: #9a3412; }
+        .badge-urgent  { background-color: #fee2e2; color: #b91c1c; }
+        .badge-expired { background-color: #e2e8f0; color: #475569; }
+
+        /* Expired cards: greyed with colours (opacity would float over the header) */
+        .scholarship-card.expired { background-color: #f8fafc; }
+        .scholarship-card.expired h3,
+        .scholarship-card.expired .deadline strong { color: #64748b; }
+        .scholarship-card.expired .card-media img { filter: grayscale(1); }
+        .scholarship-card.expired:hover { transform: none; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05); }
+
+        /* Heart / favorite button */
+        .fav-btn {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            background: none;
+            border: 2px solid #e2e8f0;
+            border-radius: 50%;
+            font-size: 22px;
+            line-height: 1;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+        }
+
+        .fav-btn:hover { background-color: #fee2e2; color: #dc2626; border-color: #fecaca; }
+        .fav-btn.saved { background-color: #fee2e2; color: #dc2626; border-color: #fecaca; }
+
+        /* Empty state + Show More */
+        #empty-state {
+            border-radius: 14px;
+            border: 2px dashed #cbd5e1;
+            padding: 50px 20px;
+        }
+
+        #empty-state h3 { color: #0f172a; font-size: 20px; }
+
+        .load-more-container button {
+            padding: 13px 32px;
+            border-radius: 999px;
+            font-size: 16px;
         }
 
         .load-error {
@@ -113,6 +394,21 @@
             color: #b91c1c;
             border-radius: 8px;
             padding: 20px;
+        }
+
+        /* Phones */
+        @media (max-width: 600px) {
+            .page-hero { padding: 32px 16px 60px; }
+            .page-hero h1 { font-size: 28px; }
+            .search-box #search-input { padding: 15px 46px 15px 46px; font-size: 16px; }
+            .filter-group { max-width: none; flex-basis: 100%; }
+            .filters button { width: 100%; margin-left: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; }
+            .scholarship-card:hover { transform: none; }
+            .scholarship-card:hover .card-media img { transform: none; }
         }
     </style>
 </head>
@@ -125,47 +421,67 @@
             Scholar<span>Path</span>
         </div>
 
-        <button class="menu-toggle" id="menu-toggle">☰</button>
-
         <!-- Navigation -->
         <nav class="navbar">
             <a href="index.html">Home</a>
             <a href="scholarships.html">Scholarships</a>
             <a href="universities.html">Universities</a>
-            <a href="admission.html">Admissions</a>
+            <a href="admissions.html">Admissions</a>
         </nav>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+
     </header>
 
-    <!-- Main Content -->
+    <!-- Banner + search -->
+    <section class="page-hero">
+        <div class="hero-inner">
+            <h1>Explore Scholarships</h1>
+            <p>
+                Discover scholarship opportunities around the world
+                and find financial support for your education.
+            </p>
+
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="search-input" placeholder="Search by name, country or field..."
+                    aria-label="Search scholarships" autocomplete="off">
+                <button type="button" class="search-clear" id="search-clear" aria-label="Clear search" hidden>×</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main part for scholarships -->
     <main class="scholarships-page">
-
-        <h1>Explore Scholarships</h1>
-        <p>
-            Discover scholarship opportunities around the world
-            and find financial support for your education.
-        </p>
-
-
-        <!-- Search -->
-        <input type="text" id="search-input" placeholder="Search by name, country or field..."
-            aria-label="Search scholarships">
 
         <!-- Filters -->
         <div class="filters">
-            <select id="level-filter" aria-label="Filter by study level">
-                <option value="">All Levels</option>
-                <option value="Undergraduate">Undergraduate</option>
-                <option value="Master's">Master's</option>
-                <option value="PhD">PhD</option>
-            </select>
+            <div class="filter-group">
+                <label for="level-filter">Study level</label>
+                <select id="level-filter">
+                    <option value="">All Levels</option>
+                    <option value="Undergraduate">Undergraduate</option>
+                    <option value="Master's">Master's</option>
+                    <option value="PhD">PhD</option>
+                </select>
+            </div>
 
-            <select id="country-filter" aria-label="Filter by country">
-                <option value="">All Countries</option>
-            </select>
+            <div class="filter-group">
+                <label for="country-filter">Country</label>
+                <select id="country-filter">
+                    <option value="">All Countries</option>
+                </select>
+            </div>
 
-            <select id="field-filter" aria-label="Filter by field of study">
-                <option value="">All Fields</option>
-            </select>
+            <div class="filter-group">
+                <label for="field-filter">Field of study</label>
+                <select id="field-filter">
+                    <option value="">All Fields</option>
+                </select>
+            </div>
 
             <button type="button" id="reset-filters">Reset Filters</button>
         </div>
@@ -204,5 +520,4 @@
     <script src="js/scholarships.js"></script>
 
 </body>
-
 </html>
