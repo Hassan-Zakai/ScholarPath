@@ -30,7 +30,7 @@ function saveData() {
   
   // progress update
   document.getElementById("progress-label").innerText = checkedList.length + " of " + items.length + " completed";
-document.getElementById("progress-fill").style width=(CheckedList.length/items.length)* 100 + "%";
+document.getElementById("progress-fill").style.width=(CheckedList.length/items.length)* 100 + "%";
 }
 
 document.getElementById("reset-checklist").addEventListener("click", function () {
