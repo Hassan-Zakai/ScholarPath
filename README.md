@@ -50,9 +50,11 @@ ScholarPath/
 ## How to Run
 
 1. Clone the repository:
+
    ```
-git clone https://github.com/Hassan-Zakai/ScholarPath
+   git clone https://github.com/Hassan-Zakai/ScholarPath
    ```
+
 2. Open the `ScholarPath` folder in VS Code.
 3. Install the **Live Server** extension.
 4. Right-click `index.html` and choose **Open with Live Server**.
