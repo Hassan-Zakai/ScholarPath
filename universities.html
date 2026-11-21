@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<link rel="stylesheet" href="css/style.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scholar Path | Universities</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholar Path | Universities</title>
 </head>
+
 <body>
 
-<header class="header">
-    <div class="logo">
-        Scholar<span>Path</span>
+    <header class="header">
+        <div class="logo">
+            Scholar<span>Path</span>
         </div>
+
+        <button class="menu-toggle" id="menu-toggle">☰</button>
 
         <!-- Navigation -->
         <nav class="navbar">
@@ -20,23 +24,31 @@
             <a href="universities.html">Universities</a>
             <a href="admission.html">Admissions</a>
         </nav>
-        <button class="menu-toggle" id="menu-toggle">☰</button>
-        
+
     </header>
-    
+
     <main class="container">
         <h1>University Profiles</h1>
         <div class="controls">
             <input type="text" id="search" placeholder="Search by name, location, program...">
-            <select id="typeFilter"><option value="">All Types</option><option>Public</option><option>Private</option></select>
-            <select id="programFilter"><option value="">All Programs</option><option>BS CS</option><option>BBA</option><option>Engineering</option></select>
+            <select id="typeFilter">
+                <option value="">All Types</option>
+                <option>Public</option>
+                <option>Private</option>
+            </select>
+            <select id="programFilter">
+                <option value="">All Programs</option>
+                <option>BS CS</option>
+                <option>BBA</option>
+                <option>Engineering</option>
+            </select>
         </div>
-        
+
         <div class="grid" id="uniGrid"></div>
-        
+
     </main>
-        
-        <footer class="footer">
+
+    <footer class="footer">
 
         <h2>ScholarPath</h2>
 
@@ -53,4 +65,5 @@
     <script src="js/main.js"></script>
     <script src="js/universities.js"></script>
 </body>
+
 </html>
