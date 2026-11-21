@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | ScholarPath</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      Scholar<span>Path</span>
+    </div>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="scholarships.html">Scholarships</a>
+      <a href="universities.html">Universities</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+  </header>
+
+  <main class="container contact-page">
+    <h1>Contact Us</h1>
+    <p class="page-note">ScholarPath is a student project by BCS-1L, FAST-NUCES Karachi. Meet the team and tell us what you think.</p>
+
+    <section aria-labelledby="team-title">
+      <h2 id="team-title">Our team</h2>
+      <div class="team-grid">
+        <div class="card member">
+          <div class="avatar" aria-hidden="true">MH</div>
+          <h3>Muhammad Hassan Zakai</h3>
+          <p class="roll">26K-0966</p>
+        </div>
+        <div class="card member">
+          <div class="avatar" aria-hidden="true">AM</div>
+          <h3>Ali Muhammad</h3>
+          <p class="roll">26K-0985</p>
+        </div>
+        <div class="card member">
+          <div class="avatar" aria-hidden="true">SA</div>
+          <h3>Shahzaib Ahmed</h3>
+          <p class="roll">26K-1070</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="feedback-box" aria-labelledby="feedback-title">
+      <h2 id="feedback-title">Send us feedback</h2>
+
+      <form id="feedback-form" novalidate>
+        <div class="field">
+          <label for="fb-name">Your name</label>
+          <input type="text" id="fb-name" name="name" maxlength="60" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="fb-rating">How would you rate ScholarPath?</label>
+          <select id="fb-rating" name="rating" required>
+            <option value="">Choose a rating</option>
+            <option value="5">5 - Excellent</option>
+            <option value="4">4 - Good</option>
+            <option value="3">3 - Okay</option>
+            <option value="2">2 - Poor</option>
+            <option value="1">1 - Very poor</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="fb-message">Your feedback</label>
+          <textarea id="fb-message" name="message" rows="5" maxlength="500" required></textarea>
+          <small id="fb-count">0 / 500</small>
+        </div>
+
+        <p class="form-error" id="fb-error" role="alert" hidden></p>
+        <button type="submit" class="btn">Send Feedback</button>
+      </form>
+
+      <p class="form-success" id="fb-success" role="status" hidden>
+        Thank you! Your feedback has been received.
+      </p>
+      <p class="saved-note">This is a class project without a server, so feedback is saved in this browser only.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <h2>ScholarPath</h2>
+    <p>Explore Opportunities. Plan Your Future.</p>
+    <p>Student Project</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>
