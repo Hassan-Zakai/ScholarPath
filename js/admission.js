@@ -1,3 +1,4 @@
+
 let items = [
   "Matric Result",
   "Inter Result",
@@ -9,7 +10,7 @@ let items = [
   "Application Form"
 ];
 
-let ul = document.getElementById("checklist");
+let ul = document.getElementById("admission-checklist");
 let saved = JSON.parse(localStorage.getItem("scholarpathChecklist")) || [];
 
 items.forEach((text, index) => {
@@ -20,7 +21,7 @@ items.forEach((text, index) => {
 });
 
 function saveData() {
-  let checks = document.querySelectorAll("#checklist input");
+  let checks = document.querySelectorAll("#admission-checklist input");
   let checkedList = [];
   checks.forEach((box, i) => {
     if (box.checked) checkedList.push(i);
@@ -28,8 +29,15 @@ function saveData() {
   localStorage.setItem("scholarpathChecklist", JSON.stringify(checkedList));
   
   // progress update
-  document.getElementById("progress").innerText = checkedList.length + " of " + items.length + " completed";
+  document.getElementById("progress-label").innerText = checkedList.length + " of " + items.length + " completed";
+document.getElementById("progress-fill").style width=(CheckedList.length/items.length)* 100 + "%";
 }
 
-// first time progress show
-saveData();
+document.getElementById("reset-checklist").addEventListener("click", function () {
+  localStorage.removeItem("scholarpathChecklist");
+  document.querySelectorAll("#admission-checklist input").forEach(function (box) {
+    box.checked = false;
+  });
+  saveData();
+});
+
