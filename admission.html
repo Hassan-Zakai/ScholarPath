@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Admission Guide | ScholarPath</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admissions.css">
 
     <script src="js/main.js" defer></script>
     <script src="js/admission.js" defer></script>
@@ -16,56 +18,60 @@
 
 <body>
 
-    <header class="header">
+<header class="header">
         <div class="logo">
             Scholar<span>Path</span>
         </div>
-
-        <button class="menu-toggle" id="menu-toggle">☰</button>
 
         <!-- Navigation -->
         <nav class="navbar">
             <a href="index.html">Home</a>
             <a href="scholarships.html">Scholarships</a>
             <a href="universities.html">Universities</a>
-            <a href="admission.html">Admissions</a>
+            <a href="admissions.html">Admissions</a>
         </nav>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
 
     </header>
 
-    <section class="container">
+<section class="container">
 
-        <h1>Admission Requirements Checklist</h1>
+    <h1>Admission Requirements Checklist</h1>
 
-        <p>
-            Complete these common tasks before applying
-            to a university.
-        </p>
+    <p>
+        Complete these common tasks before applying
+        to a university. Tick each item as you finish it; your progress is saved in this browser.
+        Requirements shown here are sample data, so always confirm them on the university's official website.
+    </p>
 
-        <h3 id="progress-label">
-            0 of 8 completed
-        </h3>
+    <div class="checklist-picker">
+        <label for="uni-select">Checklist for</label>
+        <select id="uni-select">
+            <option value="general">General checklist (any university)</option>
+        </select>
+    </div>
 
-        <div class="progress-track">
-            <div id="progress-fill"></div>
-        </div>
+    <h3 id="progress-label">
+        0 of 8 completed
+    </h3>
 
-        <div id="admission-checklist"></div>
+    <div class="progress-track" role="progressbar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track">
+        <div id="progress-fill"></div>
+    </div>
 
-        <p><em>Sample checklist. Please verify requirements on your university's official website.</em></p>
+    <div id="admission-checklist"></div>
 
-        <button id="reset-checklist" class="btn">
-            Reset Checklist
-        </button>
+    <button id="reset-checklist" class="btn">
+        Reset Checklist
+    </button>
 
-    </section>
+</section>
 
-    <footer class="footer">
-        <h2>ScholarPath</h2>
-        <p>Explore Opportunities. Plan Your Future.</p>
-        <p>Student Project</p>
-    </footer>
+<footer class="footer">
+    <h2>ScholarPath</h2>
+    <p>Explore Opportunities. Plan Your Future.</p>
+    <p>Student Project</p>
+  </footer>
 
 </body>
-
 </html>
