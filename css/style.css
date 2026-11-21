@@ -1,149 +1,577 @@
-/* =====================================================================
-   ScholarPath - Admissions checklist styles  (owner: Shahzaib)
-   Save as css/admissions.css and link it AFTER style.css in admissions.html:
-       <link rel="stylesheet" href="css/style.css">
-       <link rel="stylesheet" href="css/admissions.css">
-   Do NOT edit css/style.css (that file is Hassan's).
-
-   Checklist item markup to use inside js/admission.js (class names matter):
-       <label class="check-item">
-         <input type="checkbox">
-         <span>Item text</span>
-       </label>
-   When the box is ticked, add the class "done" to the label:
-       label.classList.toggle("done", checkbox.checked);
-   ===================================================================== */
-
-h1 {
-  font-size: 34px;
-  color: #0f172a;
-  margin: 35px 0 8px;
+/* Task ke mutabiq sabse upar :root variables */
+:root {
+  --primary: #2563eb;
+  --bg: #f8fafc;
+  --text: #1e293b;
+  --font: Arial, sans-serif;
 }
 
-.container > p {
-  color: #64748b;
-  max-width: 640px;
-  margin-bottom: 22px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* ---- choose which checklist ---- */
-.checklist-picker {
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 15px 40px;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  max-width: 420px;
-  margin-bottom: 24px;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
 }
 
-.checklist-picker label {
-  font-size: 14px;
+.logo,
+.logo h1 {
+  font-size: 24px;
   font-weight: bold;
+  color: #2563eb;
+}
+
+.logo span,
+.logo h1 span {
+  color: #eab308;
+}
+
+.navbar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.menu-toggle{
+  display: none;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #1e293b;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #2563eb;
+}
+
+/* Hero */
+.hero {
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+}
+
+.hero a {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #2563eb;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.hero a:hover {
+  background-color: #e2e8f0;
+}
+
+/* Grid & Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: #1e293b;
+}
+
+.card p {
+  margin-bottom: 15px;
   color: #475569;
 }
 
-.checklist-picker select {
-  padding: 12px 14px;
-  background-color: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 15px;
-  font-family: inherit;
+.btn {
+  display: inline-block;
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
 }
 
-.checklist-picker select:focus {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+.btn:hover {
+  background-color: #1d4ed8;
 }
 
-/* ---- progress ---- */
-#progress-label {
-  font-size: 17px;
-  color: #0f172a;
-  margin-bottom: 8px;
+/* Footer */
+.footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 50px;
 }
 
-.progress-track {
-  height: 14px;
-  background-color: #e2e8f0;
-  border-radius: 999px;
-  overflow: hidden;
-  margin-bottom: 26px;
+.footer h2 {
+  color: #1e293b;
+  margin-bottom: 5px;
 }
 
-#progress-fill {
-  height: 100%;
-  width: 0;                                     /* JS sets the width: fill.style.width = percent + "%" */
-  background: linear-gradient(90deg, #22c55e, #16a34a);
-  border-radius: 999px;
-  transition: width 0.4s ease;                  /* bar slides when you tick an item */
+/* ===== Scholarships page ===== */
+.scholarship-section,
+.scholarships-page {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
 }
 
-/* ---- checklist ---- */
-#admission-checklist {
-  display: grid;
-  gap: 12px;
-  margin-bottom: 26px;
+#search-input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
 }
 
-.check-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
+.filters {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
-  border-left: 5px solid #cbd5e1;
-  border-radius: 12px;
-  padding: 16px 18px;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+.filters select {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+}
+
+.filters button,
+.load-more-container button,
+#empty-state button {
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
-  transition: border-color 0.15s, background-color 0.15s, box-shadow 0.15s, transform 0.15s;
 }
 
-.check-item:hover {
-  border-left-color: #2563eb;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
-  transform: translateX(3px);
+.filters button:hover,
+.load-more-container button:hover,
+#empty-state button:hover {
+  background-color: #1d4ed8;
 }
 
-.check-item input {
-  width: 22px;
-  height: 22px;
-  margin-top: 1px;
-  flex-shrink: 0;
-  accent-color: #16a34a;                        /* green tick */
-  cursor: pointer;
+.results {
+  margin: 20px 0 15px 0;
+  display: flex;
+  justify-content: space-between;
+  color: #475569;
 }
 
-.check-item span {
-  font-size: 16px;
-  color: #0f172a;
-  transition: color 0.15s;
+.scholarship-cards,
+#scholarship-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 20px 0 30px 0;
 }
 
-.check-item.done {
-  background-color: #f0fdf4;
-  border-color: #bbf7d0;
-  border-left-color: #16a34a;
-}
-
-.check-item.done span {
+#empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
   color: #64748b;
-  text-decoration: line-through;
+  margin: 20px 0;
 }
 
-.check-item:focus-within {
+#empty-state p {
+  margin: 10px 0 15px 0;
+}
+
+.load-more-container {
+  text-align: center;
+  margin: 30px 0;
+}
+
+/* ===== Universities page ===== */
+.controls {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 25px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+.controls input,
+.controls select {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+}
+
+#uniGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 760px){
+  .header{
+    padding: 15px 20px;
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle{
+    display: block;
+  }
+
+  .navbar{
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .navbar.open{
+    display: flex;
+  }
+  
+  .grid,
+  .scholarship-cards,
+  #scholarship-container,
+  #uniGrid {
+    grid-template-columns: repeat(2,1fr);
+
+  }
+}
+@media(max-width: 480px){
+  .hero h2{
+    font-size: 25px;
+  }
+
+  .grid,
+  .scholarship-cards,
+  #scholarship-container,
+  #unigrid {
+    grid-template-columns: 1fr;
+  }
+}/* =====================================================================
+   ScholarPath - STYLE POLISH  (owner: Hassan)
+   PASTE THIS WHOLE BLOCK AT THE VERY END of css/style.css.
+   It only overrides/adds rules, so nothing above needs to be deleted.
+   Shared design rules for the whole team:
+     radius 14px (cards) / 8px (buttons) | transition 0.15s | hover lift -3px
+     blue #2563eb, dark blue #1e40af, yellow #eab308, text #0f172a, muted #64748b
+   ===================================================================== */
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ---- keyboard focus (same yellow ring on every page) ---- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
   outline: 3px solid #eab308;
   outline-offset: 2px;
 }
 
-#reset-checklist {
-  margin-bottom: 40px;
+/* ---- header + navigation ---- */
+.header {
+  z-index: 20;                                  /* cards no longer slide over the header */
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+}
+
+.navbar {
+  gap: 6px;
+}
+
+.navbar a {
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.navbar a:hover,
+.navbar a[aria-current="page"] {
+  color: #2563eb;
+  background-color: #eff6ff;
+}
+
+.navbar.open {
+  animation: slideDown 0.2s ease;               /* mobile menu opens smoothly */
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- hero ---- */
+.hero {
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 55%, #3b82f6 100%);
+  padding: 90px 20px 100px;
+}
+
+.hero h2 {
+  font-size: 44px;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #dbeafe;
+  margin-bottom: 28px;
+}
+
+.hero a {
+  padding: 14px 30px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+  transition: background-color 0.15s, transform 0.15s;
+}
+
+.hero a:hover {
+  background-color: #fef9c3;
+  transform: translateY(-2px);
+}
+
+/* ---- cards (used on Home AND Universities) ---- */
+.card {
+  border-top: 5px solid #2563eb;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.grid:not(#uniGrid) .card:nth-child(2) { border-top-color: #eab308; }
+.grid:not(#uniGrid) .card:nth-child(3) { border-top-color: #16a34a; }
+
+.card:hover {
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  transform: translateY(-3px);
+}
+
+/* ---- buttons ---- */
+.btn {
+  border-radius: 8px;
+  transition: background-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ---- footer ---- */
+.footer {
+  background-color: #0f172a;
+  color: #94a3b8;
+  border-top: none;
+}
+
+.footer h2 {
+  color: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 60px 20px 70px; }
+  .hero h2 { font-size: 28px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
-  .check-item:hover { transform: none; }
+  * { transition: none !important; animation: none !important; }
+  .card:hover, .btn:hover, .hero a:hover { transform: none; }
+}
+
+/* ===== Section headings (used by the saved items section) ===== */
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.section-head h2 {
+  font-size: 28px;
+  color: #0f172a;
+}
+
+.section-head a {
+  color: #2563eb;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.section-head a:hover {
+  text-decoration: underline;
+}
+
+
+/* ===== Home page: saved items ===== */
+.saved-section {
+  margin: 10px auto 60px;
+}
+
+.saved-list {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.saved-item,
+.saved-empty {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.saved-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  border-left: 5px solid #eab308;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.saved-item:hover {
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
+  transform: translateX(3px);
+}
+
+.saved-empty {
+  border-style: dashed;
+  color: #64748b;
+}
+
+.saved-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.saved-name {
+  color: #0f172a;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.saved-name:hover {
+  color: #2563eb;
+}
+
+.saved-meta {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.saved-remove {
+  background: #ffffff;
+  border: 2px solid #fecaca;
+  color: #dc2626;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.saved-remove:hover {
+  background-color: #fee2e2;
+}
+
+.saved-note {
+  color: #94a3b8;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saved-item:hover { transform: none; }
 }
