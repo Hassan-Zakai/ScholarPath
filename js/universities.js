@@ -67,7 +67,7 @@ function applyFilters() {
             u.programs.join(" ").toLowerCase().includes(searchText);
 
         const matchesType = !selectedType || u.type === selectedType;
-        const matchesProgram = !selectedProgram || u.programs.includes(selectedProgram);
+        const matchesProgram = !selectedProgram || u.programs.some(p => p.includes(selectedProgram));
 
         return matchesSearch && matchesType && matchesProgram;
     });
