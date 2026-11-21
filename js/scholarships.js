@@ -151,7 +151,7 @@ function createCard(scholarship) {
 
     if (scholarship.image) {
         const img = document.createElement("img");
-        img.src = scholarship.image;
+       img.src = scholarship.image.replace("images/scholarships/", "scholarships/");
         img.alt = "Illustration for " + scholarship.name;
         img.loading = "lazy";
         // If the picture file is missing, just remove it (the blue background stays)
