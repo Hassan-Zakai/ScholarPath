@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "name": "NED University of Engineering & Technology",
+    "location": "Karachi",
+    "country": "Pakistan",
+    "type": "Public",
+    "programs": ["BS CS", "BS Software Engineering", "Electrical Engineering"],
+    "fee": "Approx. PKR 45,000 / semester",
+    "details": "Sample data: Top public sector engineering and technology university in Karachi.",
+    "requirements": ["Matric and Inter marksheets", "NED entry test result", "CNIC or B-Form copy", "Domicile certificate"]
+  },
+  {
+    "id": 2,
+    "name": "FAST NUCES",
+    "location": "Karachi",
+    "country": "Pakistan",
+    "type": "Private",
+    "programs": ["BS CS", "BS Data Science", "BBA"],
+    "fee": "Approx. PKR 160,000 / semester",
+    "details": "Sample data: Renowned private institute for computer science and IT programs.",
+    "requirements": ["Matric and Inter marksheets", "NU admission test (NAT) result", "CNIC or B-Form copy", "Online application form submitted"]
+  },
+  {
+    "id": 3,
+    "name": "Institute of Business Administration (IBA)",
+    "location": "Karachi",
+    "country": "Pakistan",
+    "type": "Public",
+    "programs": ["BBA", "BS CS", "BS Accounting & Finance"],
+    "fee": "Approx. PKR 240,000 / semester",
+    "details": "Sample data: Premier business and computer science school in Pakistan.",
+    "requirements": ["Matric and Inter marksheets", "IBA aptitude test result", "CNIC or B-Form copy", "Online application form submitted"]
+  },
+  {
+    "id": 4,
+    "name": "University of Karachi (KU)",
+    "location": "Karachi",
+    "country": "Pakistan",
+    "type": "Public",
+    "programs": ["BS CS", "Pharm-D", "BBA"],
+    "fee": "Approx. PKR 30,000 / semester",
+    "details": "Sample data: Largest public research university offering diverse disciplines.",
+    "requirements": ["Matric and Inter marksheets", "Entrance test result or merit marks", "CNIC or B-Form copy", "Domicile certificate"]
+  },
+  {
+    "id": 5,
+    "name": "COMSATS University",
+    "location": "Islamabad",
+    "country": "Pakistan",
+    "type": "Public",
+    "programs": ["BS CS", "BS Software Engineering", "BBA"],
+    "fee": "Approx. PKR 110,000 / semester",
+    "details": "Sample data: Leading public sector IT and engineering university.",
+    "requirements": ["Matric and Inter marksheets", "Admission test result", "CNIC or B-Form copy", "Domicile certificate"]
+  },
+  {
+    "id": 6,
+    "name": "NUST",
+    "location": "Islamabad",
+    "country": "Pakistan",
+    "type": "Public",
+    "programs": ["BS CS", "Mechanical Engineering", "BBA"],
+    "fee": "Approx. PKR 150,000 / semester",
+    "details": "Sample data: Top-ranked national university for science and technology.",
+    "requirements": ["Matric and Inter marksheets", "NUST Entry Test (NET) result", "CNIC or B-Form copy", "Domicile certificate"]
+  },
+  {
+    "id": 7,
+    "name": "LUMS",
+    "location": "Lahore",
+    "country": "Pakistan",
+    "type": "Private",
+    "programs": ["BBA", "BS CS", "BA-LLB"],
+    "fee": "Approx. PKR 350,000 / semester",
+    "details": "Sample data: Leading private research university known for management and CS.",
+    "requirements": ["Matric and Inter marksheets", "SAT or LUMS admission test result", "CNIC or B-Form copy", "Personal statement"]
+  },
+  {
+    "id": 8,
+    "name": "UET Lahore",
+    "location": "Lahore",
+    "country": "Pakistan",
+    "type": "Public",
+    "programs": ["Electrical Engineering", "Mechanical Engineering", "BS CS"],
+    "fee": "Approx. PKR 50,000 / semester",
+    "details": "Sample data: Historic public engineering institution in Punjab.",
+    "requirements": ["Matric and Inter marksheets", "ECAT result", "CNIC or B-Form copy", "Domicile certificate"]
+  },
+  {
+    "id": 9,
+    "name": "Iqra University",
+    "location": "Karachi",
+    "country": "Pakistan",
+    "type": "Private",
+    "programs": ["BBA", "BS CS", "Media Sciences"],
+    "fee": "Approx. PKR 125,000 / semester",
+    "details": "Sample data: Well-known private university for business and media studies.",
+    "requirements": ["Matric and Inter marksheets", "Admission test or interview", "CNIC or B-Form copy", "Application form submitted"]
+  },
+  {
+    "id": 10,
+    "name": "Habib University",
+    "location": "Karachi",
+    "country": "Pakistan",
+    "type": "Private",
+    "programs": ["BS CS", "Electrical Engineering", "Social Development"],
+    "fee": "Approx. PKR 300,000 / semester",
+    "details": "Sample data: Liberal arts and sciences university with strong financial aid.",
+    "requirements": ["Matric and Inter marksheets", "SAT or Habib admission test result", "CNIC or B-Form copy", "Personal statement", "Financial aid form (optional)"]
+  },
+  {
+    "id": 11,
+    "name": "Harvard University (Ivy League)",
+    "location": "Cambridge",
+    "country": "United States",
+    "type": "Private",
+    "programs": ["BS CS", "BBA", "Economics", "Law"],
+    "fee": "Approx. $59,000 - $63,000 / year (Check official site)",
+    "details": "Sample data: Ivy League research university offering need-blind financial aid for international students.",
+    "requirements": ["Academic transcripts", "SAT or ACT scores (check if required)", "IELTS or TOEFL result", "Personal essays", "Recommendation letters", "Financial documents"]
+  },
+  {
+    "id": 12,
+    "name": "Yale University (Ivy League)",
+    "location": "New Haven",
+    "country": "United States",
+    "type": "Private",
+    "programs": ["BS CS", "Political Science", "Economics"],
+    "fee": "Approx. $64,000 - $67,000 / year (Check official site)",
+    "details": "Sample data: Historic Ivy League institution renowned for liberal arts, law, and sciences.",
+    "requirements": ["Academic transcripts", "SAT or ACT scores (check if required)", "IELTS or TOEFL result", "Personal essays", "Recommendation letters", "Financial documents"]
+  },
+  {
+    "id": 13,
+    "name": "Princeton University (Ivy League)",
+    "location": "Princeton",
+    "country": "United States",
+    "type": "Private",
+    "programs": ["BS CS", "Electrical Engineering", "Mechanical Engineering"],
+    "fee": "Approx. $60,000 - $64,000 / year (Check official site)",
+    "details": "Sample data: Ivy League university known for undergraduate teaching and full-need financial aid.",
+    "requirements": ["Academic transcripts", "SAT or ACT scores (check if required)", "IELTS or TOEFL result", "Personal essays", "Recommendation letters", "Financial documents"]
+  },
+  {
+    "id": 14,
+    "name": "Columbia University (Ivy League)",
+    "location": "New York",
+    "country": "United States",
+    "type": "Private",
+    "programs": ["BS CS", "BBA", "Data Science", "Journalism"],
+    "fee": "Approx. $66,000 - $70,000 / year (Check official site)",
+    "details": "Sample data: Ivy League research university located in Manhattan, New York City.",
+    "requirements": ["Academic transcripts", "SAT or ACT scores (check if required)", "IELTS or TOEFL result", "Personal essays", "Recommendation letters", "Financial documents"]
+  },
+  {
+    "id": 15,
+    "name": "University of Pennsylvania (Ivy League)",
+    "location": "Philadelphia",
+    "country": "United States",
+    "type": "Private",
+    "programs": ["BBA", "BS CS", "BS Accounting & Finance"],
+    "fee": "Approx. $63,000 - $68,000 / year (Check official site)",
+    "details": "Sample data: Ivy League university home to the world-famous Wharton Business School.",
+    "requirements": ["Academic transcripts", "SAT or ACT scores (check if required)", "IELTS or TOEFL result", "Personal essays", "Recommendation letters", "Financial documents"]
+  },
+  {
+    "id": 16,
+    "name": "Cornell University (Ivy League)",
+    "location": "Ithaca",
+    "country": "United States",
+    "type": "Private",
+    "programs": ["BS CS", "Electrical Engineering", "Mechanical Engineering", "BBA"],
+    "fee": "Approx. $65,000 - $69,000 / year (Check official site)",
+    "details": "Sample data: Ivy League institution famous for engineering, computer science, and hospitality.",
+    "requirements": ["Academic transcripts", "SAT or ACT scores (check if required)", "IELTS or TOEFL result", "Personal essays", "Recommendation letters", "Financial documents"]
+  },
+  {
+    "id": 17,
+    "name": "Brown University (Ivy League)",
+    "location": "Providence",
+    "country": "United States",
+    "type": "Private",
+    "programs": ["BS CS", "Applied Mathematics", "Economics"],
+    "fee": "Approx. $65,000 - $69,000 / year (Check official site)",
+    "details": "Sample data: Ivy League university known for its flexible Open Curriculum.",
+    "requirements": ["Academic transcripts", "SAT or ACT scores (check if required)", "IELTS or TOEFL result", "Personal essays", "Recommendation letters", "Financial documents"]
+  },
+  {
+    "id": 18,
+    "name": "Dartmouth College (Ivy League)",
+    "location": "Hanover",
+    "country": "United States",
+    "type": "Private",
+    "programs": ["BS CS", "Economics", "Engineering Sciences"],
+    "fee": "Approx. $64,000 - $68,000 / year (Check official site)",
+    "details": "Sample data: Ivy League research university emphasizing undergraduate liberal arts and sciences.",
+    "requirements": ["Academic transcripts", "SAT or ACT scores (check if required)", "IELTS or TOEFL result", "Personal essays", "Recommendation letters", "Financial documents"]
+  },
+  {
+    "id": 19,
+    "name": "University of Oxford",
+    "location": "Oxford",
+    "country": "United Kingdom",
+    "type": "Public",
+    "programs": ["BS CS", "BBA", "Law", "Economics"],
+    "fee": "Approx. £35,000 - £48,000 / year (Varies by course)",
+    "details": "Sample data: Oldest university in the English-speaking world with collegiate tutorial system.",
+    "requirements": ["Academic transcripts", "Admission test (depends on course)", "IELTS or TOEFL result", "Personal statement", "Reference letter"]
+  },
+  {
+    "id": 20,
+    "name": "University of Toronto",
+    "location": "Toronto",
+    "country": "Canada",
+    "type": "Public",
+    "programs": ["BS CS", "BS Software Engineering", "BBA"],
+    "fee": "Approx. CAD 58,000 - 65,000 / year (Varies by program)",
+    "details": "Sample data: Top Canadian public research university popular among international students.",
+    "requirements": ["Academic transcripts", "IELTS or TOEFL result", "Program-specific supplementary application", "Valid passport", "Financial documents"]
+  }
+]
