@@ -98,6 +98,7 @@ function fillProgramDropdown() {
 /* =====================================================
    2. Create ONE university card
 ===================================================== */
+
 function createUniCard(u) {
 
     const card = makeEl("div", "card uni-card");
@@ -115,11 +116,20 @@ function createUniCard(u) {
 
     card.appendChild(makeEl("p", "", u.details));
 
-    // Footer: link to the checklist + heart button
-    const actions = makeEl("div", "card-actions");
+    // Requirements open inside the card (no separate page)
+    const req = document.createElement("details");
+    req.className = "uni-req";
+    req.appendChild(makeEl("summary", "", "View requirements"));
+    const reqList = makeEl("ul");
+    (u.requirements || []).forEach(function (item) {
+        reqList.appendChild(makeEl("li", "", item));
+    });
+    req.appendChild(reqList);
+    req.appendChild(makeEl("p", "req-note", "Sample data. Verify on the official website."));
+    card.appendChild(req);
 
-    const link = makeEl("a", "btn-ghost", "View requirements");
-    link.href = "admissions.html?uni=" + encodeURIComponent(u.id);
+    // Footer: heart button
+    const actions = makeEl("div", "card-actions");
 
     const heart = makeEl("button", "fav-btn");
     heart.type = "button";
@@ -130,14 +140,12 @@ function createUniCard(u) {
         setHeart(heart, safeIsFavorite("university", u.id));
     });
 
-    actions.appendChild(link);
     actions.appendChild(heart);
     card.appendChild(actions);
 
     return card;
 
 }
-
 
 /* =====================================================
    3. Search + filters (all four are checked together)
