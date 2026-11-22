@@ -1,49 +1,51 @@
 # ScholarPath
 
-A student portal to discover scholarships, compare universities, and track admission deadlines.
-BCS-1L, FAST-NUCES Karachi: Muhammad Hassan Zakai (26K-0966), Ali Muhammad (26K-0985), Shahzaib Ahmed (26K-1070).
+A student portal to discover scholarships, compare universities, and track admission requirements.
 
-## How to run
-The pages load JSON files with `fetch()`, so open the folder in VS Code and use **Live Server**
-(right-click `index.html` -> Open with Live Server). Double-clicking the HTML files will not load the data.
+**Course:** Information and Communication Technology
+**University:** National University of Computer & Emerging Sciences (FAST-NUCES), Karachi Campus
 
-## Features
-* **Home (`index.html`)**: hero, quick links to each section, and a "Your saved items" list.
-* **Scholarships (`scholarships.html`)**: picture cards, search, level/country/field filters, "days left" / "Expired" badges, Show More, favorites, and an **Apply Now** button on every card that opens the official scholarship website in a new tab.
-* **Universities (`universities.html`)**: search, type and program filters, "Saved only", favorites, link to each university's checklist.
-* **Admissions (`admissions.html`)**: tick-off checklist (general or per university) with a progress bar that is saved in the browser.
-* **Favorites**: `localStorage` key `scholarpathFavorites`, items stored as `{ type: "scholarship" | "university", id }`.
+## Team Members
+
+| Name | Roll No. | Files |
+|---|---|---|
+| Muhammad Hassan Zakai | 26K-0966 | `index.html`, `css/style.css`, `js/main.js`, `js/home.js`, `README.md` |
+| Ali Muhammad | 26K-0985 | `scholarships.html`, `js/scholarships.js`, `data/scholarships.json`, `scholarships/` images |
+| Shahzaib Ahmed | 26K-1070 | `universities.html`, `admissions.html`, `contact.html`, `js/universities.js`, `js/admission.js`, `js/contact.js`, `data/universities.json`, `css/universities.css`, `css/admissions.css`, `css/contact.css` |
+
+## What it has
+
+- **Home:** hero, links to every section, and a "Your saved items" list.
+- **Scholarships:** picture cards, search, level/country/field filters, "days left" and "Expired" badges, Show More, favorites, and an Apply Now button that opens the official website.
+- **Universities:** search, type and program filters, "Saved only", favorites, and a link to each university's requirements.
+- **Admissions:** tick-off checklist (general, or specific to one university, with different requirements for Pakistani and international universities) and a progress bar saved in the browser.
+- **Contact:** team details and a feedback form saved in the browser.
+- **Favorites:** saved in `localStorage` under the key `scholarpathFavorites`.
+
+## Technologies
+
+HTML, CSS, JavaScript, JSON, localStorage
 
 ## Folder structure
+
 ```
-index.html  scholarships.html  universities.html  admissions.html
-css/   style.css (Hassan)  universities.css, admissions.css (Shahzaib)
-js/    main.js, home.js (Hassan)  scholarships.js (Ali)  universities.js, admission.js (Shahzaib)
-data/  scholarships.json (Ali)  universities.json (Shahzaib)
-images/scholarships/  12 illustrations used by the scholarship cards
+index.html  scholarships.html  universities.html  admissions.html  contact.html
+css/    style.css  universities.css  admissions.css  contact.css
+js/     main.js  home.js  scholarships.js  universities.js  admission.js  contact.js
+data/   scholarships.json  universities.json
+scholarships/   illustrations used on the scholarship cards
 ```
 
-## Who built what
-| Member | Files |
-|---|---|
-| Hassan | `index.html`, `css/style.css`, `js/main.js`, `js/home.js`, `README.md` |
-| Ali | `scholarships.html`, `js/scholarships.js`, `data/scholarships.json`, `images/` |
-| Shahzaib | `universities.html`, `admissions.html`, `js/universities.js`, `js/admission.js`, `data/universities.json`, `css/universities.css`, `css/admissions.css` |
+## How to run
 
-## Team guidelines
-* Keep the navbar labels the same on every page (`Home`, `Scholarships`, `Universities`, `Admissions`).
-* Load `js/main.js` first, then the page's own script.
-* Favorites functions (in `js/main.js`): `getFavorites()`, `isFavorite(type, id)`, `toggleFavorite(type, id)`.
-* Only Hassan edits `css/style.css`. Page-specific CSS goes in the page's own file.
+Clone the repository:
 
-## Apply links
-Each scholarship in `data/scholarships.json` has an `applyLink` field with the official website of that scholarship.
-The **Apply Now** button on the card opens it in a new tab (`target="_blank"` with `rel="noopener noreferrer"`).
-To change a link, edit `applyLink` in the JSON file. No code change is needed. If a scholarship has no `applyLink`, its card simply shows no button.
+```
+git clone https://github.com/Hassan-Zakai/ScholarPath
+```
 
-## Design notes
-Cards have no hover animation (no lift, shadow or image zoom). Interactive elements such as buttons and links still change colour on hover.
+Then open the folder in VS Code and run `index.html` with the Live Server extension. Do not double-click the HTML files, because the JSON data will not load without a server.
 
-## Sample data
-Scholarship and university details (deadlines, fees, requirements) are illustrative sample data for a class project.
-Always confirm them on the official websites before relying on them.
+## Note
+
+All scholarship and university details (deadlines, fees, requirements) are sample data for a class project. Please confirm them on the official websites before applying.

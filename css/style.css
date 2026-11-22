@@ -1,9 +1,7 @@
-/* Task ke mutabiq sabse upar :root variables */
 :root {
   --primary: #2563eb;
   --bg: #f8fafc;
   --text: #1e293b;
-  --font: Arial, sans-serif;
 }
 
 * {
@@ -13,7 +11,7 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   background-color: #f8fafc;
   color: #1e293b;
   line-height: 1.6;
@@ -25,16 +23,27 @@ body {
   padding: 0 20px;
 }
 
-/* Header */
+/* ===== Keyboard focus (same yellow ring everywhere) ===== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #eab308;
+  outline-offset: 2px;
+}
+
+/* ===== Header + navigation ===== */
 .header {
   background-color: #ffffff;
   border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
   padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
+  z-index: 20;
 }
 
 .logo,
@@ -51,11 +60,26 @@ body {
 
 .navbar {
   display: flex;
-  gap: 20px;
+  gap: 6px;
   align-items: center;
 }
 
-.menu-toggle{
+.navbar a {
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #1e293b;
+  font-weight: bold;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.navbar a:hover,
+.navbar a[aria-current="page"] {
+  color: #2563eb;
+  background-color: #eff6ff;
+}
+
+.menu-toggle {
   display: none;
   background: none;
   border: none;
@@ -64,49 +88,54 @@ body {
   cursor: pointer;
 }
 
-.navbar a {
-  text-decoration: none;
-  color: #1e293b;
-  font-weight: bold;
+.navbar.open {
+  animation: slideDown 0.2s ease;
 }
 
-.navbar a:hover {
-  color: #2563eb;
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero */
+/* ===== Hero ===== */
 .hero {
-  background-color: #2563eb;
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 55%, #3b82f6 100%);
   color: #ffffff;
-  padding: 60px 20px;
+  padding: 90px 20px 100px;
   text-align: center;
 }
 
 .hero h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
+  font-size: 44px;
+  line-height: 1.15;
+  margin-bottom: 14px;
 }
 
 .hero p {
   max-width: 600px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 28px auto;
+  font-size: 18px;
+  color: #dbeafe;
 }
 
 .hero a {
   display: inline-block;
   background-color: #ffffff;
   color: #2563eb;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 14px 30px;
+  border-radius: 999px;
   font-weight: bold;
   text-decoration: none;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+  transition: background-color 0.15s, transform 0.15s;
 }
 
 .hero a:hover {
-  background-color: #e2e8f0;
+  background-color: #fef9c3;
+  transform: translateY(-2px);
 }
 
-/* Grid & Cards */
+/* ===== Grid + cards (Home and Universities) ===== */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -117,8 +146,19 @@ body {
 .card {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 20px;
+  border-top: 5px solid #2563eb;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.grid:not(#uniGrid) .card:nth-child(2) { border-top-color: #eab308; }
+.grid:not(#uniGrid) .card:nth-child(3) { border-top-color: #16a34a; }
+
+.card:hover {
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  transform: translateY(-3px);
 }
 
 .card h3 {
@@ -131,40 +171,47 @@ body {
   color: #475569;
 }
 
+/* ===== Buttons ===== */
 .btn {
   display: inline-block;
   background-color: #2563eb;
   color: #ffffff;
   padding: 10px 20px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
+  transition: background-color 0.15s, transform 0.15s, box-shadow 0.15s;
 }
 
 .btn:hover {
   background-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
 }
 
-/* Footer */
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ===== Footer ===== */
 .footer {
-  background-color: #ffffff;
-  border-top: 1px solid #e2e8f0;
-  color: #64748b;
+  background-color: #0f172a;
+  color: #94a3b8;
   text-align: center;
   padding: 30px 20px;
   margin-top: 50px;
 }
 
 .footer h2 {
-  color: #1e293b;
+  color: #ffffff;
   margin-bottom: 5px;
 }
 
-/* ===== Scholarships page ===== */
-.scholarship-section,
+/* ===== Scholarships page (cards are styled inside scholarships.html) ===== */
 .scholarships-page {
   max-width: 1200px;
   margin: 30px auto;
@@ -178,7 +225,7 @@ body {
   border: 1px solid #cbd5e1;
   border-radius: 6px;
   font-size: 16px;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
 }
 
 .filters {
@@ -198,7 +245,7 @@ body {
   border: 1px solid #cbd5e1;
   border-radius: 6px;
   font-size: 15px;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
 }
 
 .filters button,
@@ -227,8 +274,7 @@ body {
   color: #475569;
 }
 
-.scholarship-cards,
-#scholarship-container {
+.scholarship-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
@@ -254,7 +300,7 @@ body {
   margin: 30px 0;
 }
 
-/* ===== Universities page ===== */
+/* ===== Universities page (extra styles in universities.css) ===== */
 .controls {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
@@ -273,7 +319,7 @@ body {
   border: 1px solid #cbd5e1;
   border-radius: 6px;
   font-size: 15px;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
 }
 
 #uniGrid {
@@ -283,188 +329,7 @@ body {
   margin-bottom: 30px;
 }
 
-@media (max-width: 760px){
-  .header{
-    padding: 15px 20px;
-    flex-wrap: wrap;
-  }
-
-  .menu-toggle{
-    display: block;
-  }
-
-  .navbar{
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    padding-top: 15px;
-    margin-top: 15px;
-    border-top: 1px solid #e2e8f0;
-  }
-
-  .navbar.open{
-    display: flex;
-  }
-  
-  .grid,
-  .scholarship-cards,
-  #scholarship-container,
-  #uniGrid {
-    grid-template-columns: repeat(2,1fr);
-
-  }
-}
-@media(max-width: 480px){
-  .hero h2{
-    font-size: 25px;
-  }
-
-  .grid,
-  .scholarship-cards,
-  #scholarship-container,
-  #unigrid {
-    grid-template-columns: 1fr;
-  }
-}/* =====================================================================
-   ScholarPath - STYLE POLISH  (owner: Hassan)
-   PASTE THIS WHOLE BLOCK AT THE VERY END of css/style.css.
-   It only overrides/adds rules, so nothing above needs to be deleted.
-   Shared design rules for the whole team:
-     radius 14px (cards) / 8px (buttons) | transition 0.15s | hover lift -3px
-     blue #2563eb, dark blue #1e40af, yellow #eab308, text #0f172a, muted #64748b
-   ===================================================================== */
-
-body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-}
-
-/* ---- keyboard focus (same yellow ring on every page) ---- */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible {
-  outline: 3px solid #eab308;
-  outline-offset: 2px;
-}
-
-/* ---- header + navigation ---- */
-.header {
-  z-index: 20;                                  /* cards no longer slide over the header */
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
-}
-
-.navbar {
-  gap: 6px;
-}
-
-.navbar a {
-  padding: 8px 14px;
-  border-radius: 8px;
-  transition: background-color 0.15s, color 0.15s;
-}
-
-.navbar a:hover,
-.navbar a[aria-current="page"] {
-  color: #2563eb;
-  background-color: #eff6ff;
-}
-
-.navbar.open {
-  animation: slideDown 0.2s ease;               /* mobile menu opens smoothly */
-}
-
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ---- hero ---- */
-.hero {
-  background: linear-gradient(135deg, #1e40af 0%, #2563eb 55%, #3b82f6 100%);
-  padding: 90px 20px 100px;
-}
-
-.hero h2 {
-  font-size: 44px;
-  line-height: 1.15;
-  margin-bottom: 14px;
-}
-
-.hero p {
-  font-size: 18px;
-  color: #dbeafe;
-  margin-bottom: 28px;
-}
-
-.hero a {
-  padding: 14px 30px;
-  border-radius: 999px;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
-  transition: background-color 0.15s, transform 0.15s;
-}
-
-.hero a:hover {
-  background-color: #fef9c3;
-  transform: translateY(-2px);
-}
-
-/* ---- cards (used on Home AND Universities) ---- */
-.card {
-  border-top: 5px solid #2563eb;
-  border-radius: 14px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
-  transition: box-shadow 0.15s, transform 0.15s;
-}
-
-.grid:not(#uniGrid) .card:nth-child(2) { border-top-color: #eab308; }
-.grid:not(#uniGrid) .card:nth-child(3) { border-top-color: #16a34a; }
-
-.card:hover {
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
-  transform: translateY(-3px);
-}
-
-/* ---- buttons ---- */
-.btn {
-  border-radius: 8px;
-  transition: background-color 0.15s, transform 0.15s, box-shadow 0.15s;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
-}
-
-.btn:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-/* ---- footer ---- */
-.footer {
-  background-color: #0f172a;
-  color: #94a3b8;
-  border-top: none;
-}
-
-.footer h2 {
-  color: #ffffff;
-}
-
-@media (max-width: 480px) {
-  .hero { padding: 60px 20px 70px; }
-  .hero h2 { font-size: 28px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; animation: none !important; }
-  .card:hover, .btn:hover, .hero a:hover { transform: none; }
-}
-
-/* ===== Section headings (used by the saved items section) ===== */
+/* ===== Section heading + Home: saved items ===== */
 .section-head {
   display: flex;
   justify-content: space-between;
@@ -479,18 +344,6 @@ select:focus-visible {
   color: #0f172a;
 }
 
-.section-head a {
-  color: #2563eb;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.section-head a:hover {
-  text-decoration: underline;
-}
-
-
-/* ===== Home page: saved items ===== */
 .saved-section {
   margin: 10px auto 60px;
 }
@@ -572,6 +425,51 @@ select:focus-visible {
   margin-top: 10px;
 }
 
+/* ===== Responsive (keep these LAST) ===== */
+@media (max-width: 760px) {
+  .header {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+  }
+
+  .logo { order: 1; }
+  .menu-toggle { order: 2; display: block; }
+
+  .navbar {
+    order: 3;
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .navbar.open {
+    display: flex;
+  }
+
+  .grid,
+  .scholarship-cards,
+  #uniGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 60px 20px 70px; }
+  .hero h2 { font-size: 28px; }
+
+  .grid,
+  .scholarship-cards,
+  #uniGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .saved-item:hover { transform: none; }
+  * { transition: none !important; animation: none !important; }
+  .card:hover, .btn:hover, .hero a:hover, .saved-item:hover { transform: none; }
 }
