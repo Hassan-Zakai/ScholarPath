@@ -228,7 +228,6 @@ h1 {
 }
 
 /* ===== Requirements inside the card ===== */
-.card-actions { justify-content: flex-end; }
 
 .uni-req {
   border-top: 1px solid #e2e8f0;
