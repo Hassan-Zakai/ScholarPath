@@ -97,7 +97,7 @@ function fillProgramDropdown() {
 
 /* =====================================================
    2. Create ONE university card
-=====================================================
+===================================================== */
 function createUniCard(u) {
 
     const card = makeEl("div", "card uni-card");
