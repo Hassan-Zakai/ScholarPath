@@ -97,8 +97,7 @@ function fillProgramDropdown() {
 
 /* =====================================================
    2. Create ONE university card
-===================================================== */
-
+=====================================================
 function createUniCard(u) {
 
     const card = makeEl("div", "card uni-card");
@@ -116,7 +115,7 @@ function createUniCard(u) {
 
     card.appendChild(makeEl("p", "", u.details));
 
-    // Requirements open inside the card (no separate page)
+    // Requirements open inside the card
     const req = document.createElement("details");
     req.className = "uni-req";
     req.appendChild(makeEl("summary", "", "View requirements"));
@@ -128,18 +127,22 @@ function createUniCard(u) {
     req.appendChild(makeEl("p", "req-note", "Sample data. Verify on the official website."));
     card.appendChild(req);
 
-    // Footer: heart button
+    // Footer: link to the tickable checklist + heart button
     const actions = makeEl("div", "card-actions");
+
+    const link = makeEl("a", "btn-ghost", "Full checklist");
+    link.href = "admissions.html?uni=" + encodeURIComponent(u.id);
 
     const heart = makeEl("button", "fav-btn");
     heart.type = "button";
     heart.setAttribute("aria-label", "Save " + u.name + " to favorites");
-    setHeart(heart, safeIsFavorite("university", u.id));     // check saved state every time a card is built
+    setHeart(heart, safeIsFavorite("university", u.id));
     heart.addEventListener("click", function () {
         safeToggleFavorite("university", u.id);
         setHeart(heart, safeIsFavorite("university", u.id));
     });
 
+    actions.appendChild(link);
     actions.appendChild(heart);
     card.appendChild(actions);
 
