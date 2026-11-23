@@ -1,10 +1,3 @@
-/* =====================================================
-   ScholarPath - Scholarships Module  (Ali Muhammad)
-   Day 2: load data + render cards + dropdowns
-   Day 3: search, filters, reset, empty state, Show More
-   Day 4: days-left badges + favorite (heart) button
-   Final: "Apply Now" button linking to the official website
-===================================================== */
 
 // ---------- Global variables ----------
 let allScholarships = [];        // every scholarship from the JSON file
@@ -12,14 +5,6 @@ let filteredScholarships = [];   // the ones that match the current search/filte
 const CARDS_PER_PAGE = 6;        // how many cards "Show More" adds each time
 let visibleCount = CARDS_PER_PAGE;
 
-
-/* =====================================================
-   Favorites helpers
-   js/main.js (Hassan) provides the real functions. The README names them
-   isFavorite / toggleFavorite, but main.js currently defines them as
-   isfavorite / togglefavorites (all lowercase). These two small wrappers work
-   with either spelling, so this page does not break if Hassan renames them.
-===================================================== */
 function safeIsFavorite(type, id) {
     if (typeof isFavorite === "function") return isFavorite(type, id);
     if (typeof isfavorite === "function") return isfavorite(type, id);
@@ -34,9 +19,9 @@ function safeToggleFavorite(type, id) {
 }
 
 
-/* =====================================================
+/* 
    Date helpers
-===================================================== */
+ */
 
 // Number of days from today until the deadline.
 // 0 = last day is today, negative = already expired.
@@ -72,9 +57,9 @@ function getDeadlineBadge(days) {
 }
 
 
-/* =====================================================
+/* 
    1. Fetch scholarship data from JSON
-===================================================== */
+ */
 async function loadScholarships() {
 
     try {
@@ -122,15 +107,13 @@ async function loadScholarships() {
 }
 
 
-/* =====================================================
+/* 
    2. Create ONE scholarship card (returns the card element)
-===================================================== */
+ */
 
-// Small inline icons (fixed strings written by us, not user data)
 const ICON_PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>';
 const ICON_CALENDAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>';
 
-// Small helper: create an element with a class and text
 function makeEl(tag, className, text) {
     const el = document.createElement(tag);
     if (className) el.className = className;
@@ -146,7 +129,7 @@ function createCard(scholarship) {
     const card = makeEl("div", "scholarship-card");
     if (days < 0) card.classList.add("expired");
 
-    // --- Picture area: image + days-left badge + heart on top of it ---
+    // --- Picture area ---
     const media = makeEl("div", "card-media");
 
     if (scholarship.image) {
@@ -232,9 +215,9 @@ function setHeart(button, saved) {
 }
 
 
-/* =====================================================
-   3. Render scholarship cards (only the first `visibleCount`)
-===================================================== */
+/* 
+   3. Render scholarship cards
+ */
 function renderCards(list) {
 
     const container = document.getElementById("scholarship-cards");
@@ -272,9 +255,7 @@ function renderCards(list) {
 }
 
 
-/* =====================================================
-   4. Populate dropdowns with unique values from the JSON
-===================================================== */
+
 function populateDropdown(dropdownId, key) {
 
     const dropdown = document.getElementById(dropdownId);
@@ -303,9 +284,9 @@ function populateFieldDropdown() {
 }
 
 
-/* =====================================================
-   5. Search + filters (all four are checked together)
-===================================================== */
+/* 
+   5. Search + filters
+ */
 function applyFilters() {
 
     const search = document.getElementById("search-input").value.trim().toLowerCase();
@@ -361,9 +342,9 @@ function showMore() {
 }
 
 
-/* =====================================================
-   6. Connect events and start the page
-===================================================== */
+/* 
+    Connect events and start the page
+ */
 document.addEventListener("DOMContentLoaded", function () {
 
     // Search box: run on every key press
