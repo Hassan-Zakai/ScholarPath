@@ -1,11 +1,3 @@
-/* =====================================================
-   ScholarPath - Admission Requirements Checklist  (Shahzaib Ahmed)
-   - General checklist of 8 common tasks, or one specific to a university
-     (university requirements come from data/universities.json).
-   - Ticks are saved in localStorage under "scholarpathChecklist":
-       { "general": [0, 2], "3": [1] }   (indexes of ticked items per list)
-===================================================== */
-
 const CHECKLIST_KEY = "scholarpathChecklist";
 
 // The 8 common tasks shown by default
@@ -20,8 +12,8 @@ const GENERAL_ITEMS = [
     "Application fee payment and passport-size photographs"
 ];
 
-let universities = [];       // loaded from JSON (stays empty if loading fails)
-let savedTicks = {};         // { listId: [ticked indexes] }
+let universities = [];       
+let savedTicks = {};         
 
 const listBox = document.getElementById("admission-checklist");
 const select = document.getElementById("uni-select");
@@ -30,7 +22,7 @@ const progressFill = document.getElementById("progress-fill");
 const progressTrack = document.getElementById("progress-track");
 
 
-/* ---------- saving and loading ticks ---------- */
+/* ---- saving and loading ticks ---- */
 function loadTicks() {
     try {
         return JSON.parse(localStorage.getItem(CHECKLIST_KEY)) || {};
