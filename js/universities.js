@@ -1,8 +1,3 @@
-/* =====================================================
-   ScholarPath - Universities Module  (Shahzaib Ahmed)
-   Data comes from data/universities.json.
-   Favorites use the shared functions in js/main.js.
-===================================================== */
 
 let universities = [];              // every university from the JSON file
 
@@ -42,9 +37,9 @@ function makeEl(tag, className, text) {
 }
 
 
-/* =====================================================
+/* 
    1. Load the data
-===================================================== */
+   */
 async function loadUniversities() {
 
     try {
@@ -95,9 +90,7 @@ function fillProgramDropdown() {
 }
 
 
-/* =====================================================
-   2. Create ONE university card
-===================================================== */
+
 function createUniCard(u) {
 
     const card = makeEl("div", "card uni-card");
@@ -150,9 +143,9 @@ function createUniCard(u) {
 
 }
 
-/* =====================================================
-   3. Search + filters (all four are checked together)
-===================================================== */
+/* 
+   3. Search + filters
+ */
 function applyFilters() {
 
     const search = searchInput.value.trim().toLowerCase();
@@ -202,9 +195,9 @@ function resetFilters() {
 }
 
 
-/* =====================================================
+/* 
    4. Connect events and start
-===================================================== */
+ */
 searchInput.addEventListener("input", applyFilters);
 typeFilter.addEventListener("change", applyFilters);
 programFilter.addEventListener("change", applyFilters);
