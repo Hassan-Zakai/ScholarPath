@@ -38,9 +38,6 @@ document.querySelectorAll(".navbar a").forEach(function (link) {
     }
 });
 
-// 2) The README names the favorites functions isFavorite / toggleFavorite / getFavorites,
-//    but this file defines them in lowercase. These aliases make BOTH spellings work,
-//    so nobody's page breaks.
 const getFavorites = getfavorites;
 const isFavorite = isfavorite;
 const toggleFavorite = togglefavorites;
