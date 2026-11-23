@@ -1,9 +1,3 @@
-/* =====================================================
-   ScholarPath - Contact page: feedback form
-   There is no server, so each feedback is saved in this browser
-   (localStorage key "scholarpathFeedback").
-===================================================== */
-
 (function () {
 
     const form = document.getElementById("feedback-form");
