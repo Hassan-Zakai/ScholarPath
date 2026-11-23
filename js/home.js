@@ -1,8 +1,3 @@
-/* =====================================================
-   Home page - "Your saved items" list (favorites)
-   Reads the favorites saved by the Scholarships and Universities pages.
-===================================================== */
-
 (function () {
 
     const list = document.getElementById("saved-list");
@@ -101,8 +96,6 @@
         }
 
     }
-
-    // Saved something in another tab? Update this list too.
     window.addEventListener("storage", render);
 
     document.addEventListener("DOMContentLoaded", load);
